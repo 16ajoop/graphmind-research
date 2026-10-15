@@ -10,19 +10,40 @@ Agents That Act on Connected Data; Agent Memory and Coordination.
 A diagram and walkthrough of the upload → parse → ingest → reconcile → answer pipeline and its agents.
 
 ## Graph data model
-Node labels, relationship types and direction conventions, taken from ontology.json.
+See [docs/DATA_MODEL.md](docs/DATA_MODEL.md): node labels, relationships and direction conventions, with counts
+measured on the gold graph.
 
 ## Why FalkorDB is central
 Why the graph is the single source of truth for answers, agent coordination (Job nodes) and memory.
 
 ## Cypher queries
-The named, parameterised queries the agent uses, with an example of each.
+See [docs/CYPHER.md](docs/CYPHER.md): every named, parameterised query the agent can run. It is generated from
+`backend/app/graph/analysis.py` (`python -m app.graph.export_cypher`; `--check` fails if it is out of date).
 
 ## Evaluation
 How extraction and answers are scored against ground_truth/, with the latest results.
 
 ## Local setup
-Commands to start FalkorDB and Ollama, then run the backend, frontend and tests.
+Needs Docker, Python 3.11+, Node 20+ and Ollama (`llama3.2`, `nomic-embed-text`).
+
+```powershell
+docker compose up -d                       # FalkorDB on 6379, browser UI on http://localhost:3000
+
+cd backend
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python -m app.health                       # FalkorDB, Ollama and the Chroma path
+python -m app.graph.gold_loader --workspace gold
+python -m app.graph.analysis gold leaderboard dataset=ds-kaveri split=3-hop metric=metric-em
+pytest tests/test_analysis.py -q
+
+cd ..\frontend
+npm install
+npm run dev                                # http://localhost:5173
+```
+
+The analysis CLI takes the workspace name (`gold`), not the graph name (`ws_gold`); the `ws_` prefix is added for you.
 
 ## Demo questions
 Example questions to ask, with the graph path and source passages each one returns.
@@ -30,5 +51,10 @@ Example questions to ask, with the graph path and source passages each one retur
 ## Dataset statement
 Where the corpus comes from (synthetic or open-access) and the terms under which it is used.
 
-## AI assistance disclosure
-Which parts of the project were built with AI tools, and how the work was reviewed.
+## AI assistance
+Disclosed under hackathon rule 11.
+
+- The project was planned and built with Claude.
+- The synthetic research corpus (papers, ground truth) was generated with Claude.
+- The code was written with Claude Code.
+- I reviewed every file and can explain how each part works and why it is built that way.
