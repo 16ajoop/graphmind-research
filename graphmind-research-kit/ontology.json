@@ -1,0 +1,153 @@
+{
+  "_about": "Domain ontology for GraphMind Research. Node labels and relationship types the pipeline may create, the closed vocabularies the LLM must choose from, and canonical metrics. Methods, datasets, papers and claims are discovered from the PDFs; they are NOT listed here.",
+  "node_labels": {
+    "Paper": "A document. in_library=true when its PDF was uploaded; false for a stub created from someone's reference list.",
+    "Author": "A person who wrote at least one paper (merged by normalised name).",
+    "Institution": "An affiliation as printed in a paper header.",
+    "Venue": "Conference, journal, workshop or preprint server.",
+    "Method": "A named technique or system. aliases[] holds every spelling seen; anchors[] holds ids of papers cited right next to a mention.",
+    "Dataset": "A named benchmark or corpus, with language and splits.",
+    "Task": "What a method or dataset is for.",
+    "Metric": "How results are measured.",
+    "Result": "One number from one table cell: value, split, origin, setting.",
+    "Claim": "A finding stated in a paper, in one sentence. Claims of type 'sota' carry scope = ['<dataset id>|<split>|<metric id>', ...] so they can be checked against results.",
+    "Job": "A unit of pipeline work shared between agents (status, stage, claimed_by).",
+    "Workspace": "Optional: one per user/team when all workspaces share one graph. Default design uses one FalkorDB graph per workspace.",
+    "ResearchSession": "A conversation/investigation; links to the questions asked and insights saved.",
+    "Insight": "A conclusion the user or agent saved, linked to the papers/claims it is about."
+  },
+  "relationship_types": {
+    "WROTE": "(Author)-[:WROTE {position, affiliation}]->(Paper)",
+    "AFFILIATED_WITH": "(Author)-[:AFFILIATED_WITH {first_year, last_year}]->(Institution)",
+    "COAUTHOR": "(Author)-[:COAUTHOR {papers, count}]->(Author), stored once with the smaller id first",
+    "PUBLISHED_IN": "(Paper)-[:PUBLISHED_IN]->(Venue)",
+    "CITES": "(Paper)-[:CITES {intent, ref_no, contexts}]->(Paper)",
+    "PROPOSES": "(Paper)-[:PROPOSES]->(Method)",
+    "INTRODUCES": "(Paper)-[:INTRODUCES]->(Dataset)",
+    "EVALUATES_ON": "(Paper)-[:EVALUATES_ON]->(Dataset)",
+    "USES": "(Paper)-[:USES]->(Method)   baseline or tool",
+    "EXTENDS": "(Method)-[:EXTENDS]->(Method)   derived: proposing paper CITES the other paper with intent 'extends'",
+    "SIMILAR_TO": "(Method)-[:SIMILAR_TO {score, basis, detected_by}]->(Method)",
+    "FOR_TASK": "(Method|Dataset)-[:FOR_TASK]->(Task)",
+    "REPORTS": "(Paper)-[:REPORTS]->(Result)",
+    "OF_METHOD": "(Result)-[:OF_METHOD]->(Method)",
+    "ON_DATASET": "(Result)-[:ON_DATASET]->(Dataset)",
+    "MEASURED_BY": "(Result)-[:MEASURED_BY]->(Metric)",
+    "QUOTED_FROM": "(Result)-[:QUOTED_FROM]->(Paper)   number copied from another paper",
+    "REPRODUCES": "(Result)-[:REPRODUCES {setting}]->(Result)",
+    "CORRECTS": "(Paper)-[:CORRECTS]->(Paper) and (Result)-[:CORRECTS {reason}]->(Result)",
+    "MAKES": "(Paper)-[:MAKES]->(Claim)",
+    "ABOUT": "(Claim)-[:ABOUT]->(Method|Dataset|Task)",
+    "SUPPORTS": "(Claim)-[:SUPPORTS {basis}]->(Claim)",
+    "CONTRADICTS": "(Claim)-[:CONTRADICTS {basis}]->(Claim)",
+    "QUALIFIES": "(Claim)-[:QUALIFIES {basis}]->(Claim)   the other claim only holds in a narrower scope",
+    "CONFLICTS_WITH_RESULT": "(Claim)-[:CONFLICTS_WITH_RESULT {basis}]->(Result)",
+    "FOR_PAPER": "(Job)-[:FOR_PAPER]->(Paper)   pipeline work item for one uploaded PDF"
+  },
+  "citation_intents": {
+    "extends": "builds directly on the cited method",
+    "compares_against": "reports or quotes the cited work as a baseline",
+    "uses_dataset": "evaluates on a dataset the cited work introduced",
+    "uses_method": "uses the cited method or tool as a component",
+    "reproduces": "re-runs the cited work to check its results",
+    "supports": "presents evidence agreeing with the cited work",
+    "criticizes": "argues the cited work is wrong or limited",
+    "corrects": "erratum or correction of the cited work",
+    "background": "general context only"
+  },
+  "claim_types": [
+    "comparative",
+    "causal",
+    "sota",
+    "efficiency",
+    "observational"
+  ],
+  "claim_relations": [
+    "SUPPORTS",
+    "CONTRADICTS",
+    "QUALIFIES",
+    "UNRELATED"
+  ],
+  "result_origins": {
+    "proposed": "the paper's own method, run by the paper",
+    "baseline_run": "someone else's method, run by this paper",
+    "quoted": "number copied from another paper (source column cites it)",
+    "reproduced": "explicit reproduction of another paper's result",
+    "corrected": "corrected number in an erratum"
+  },
+  "source_column_rules": [
+    {
+      "pattern": "corrected",
+      "origin": "corrected"
+    },
+    {
+      "pattern": "reproduced",
+      "origin": "reproduced"
+    },
+    {
+      "pattern": "^\\[\\d+\\]",
+      "origin": "quoted"
+    },
+    {
+      "pattern": "re-run",
+      "origin": "baseline_run"
+    },
+    {
+      "pattern": "^ours$",
+      "origin": "proposed_or_baseline_run"
+    }
+  ],
+  "metrics": [
+    {
+      "id": "metric-em",
+      "name": "Exact Match",
+      "aliases": [
+        "EM",
+        "exact match"
+      ],
+      "unit": "%",
+      "higher_is_better": true
+    },
+    {
+      "id": "metric-latency",
+      "name": "Latency",
+      "aliases": [
+        "latency (ms/query)",
+        "Latency (ms/query)",
+        "latency"
+      ],
+      "unit": "ms/query",
+      "higher_is_better": false
+    },
+    {
+      "id": "metric-el-acc",
+      "name": "Entity linking accuracy",
+      "aliases": [
+        "EL accuracy",
+        "entity linking accuracy"
+      ],
+      "unit": "%",
+      "higher_is_better": true
+    },
+    {
+      "id": "metric-f1",
+      "name": "F1",
+      "aliases": [
+        "F1"
+      ],
+      "unit": "%",
+      "higher_is_better": true
+    },
+    {
+      "id": "metric-recall10",
+      "name": "Recall@10",
+      "aliases": [
+        "R@10",
+        "Recall@10"
+      ],
+      "unit": "%",
+      "higher_is_better": true
+    }
+  ],
+  "split_pattern": "(\\d+-hop)$"
+}

@@ -1,0 +1,123 @@
+{
+  "_about": "What a correct GraphMind Research agent must answer on the synthetic corpus. Every item was produced by the analysis queries in the build guide running on gold_graph.json in FalkorDB. Use these as test assertions and as your demo script.",
+
+  "library": {
+    "papers_in_library": 12,
+    "stub_papers_cited_but_not_uploaded": ["ext-rao2020", "ext-brown2019", "ext-dpr2020", "ext-hotpotqa2018"],
+    "citations": 49,
+    "methods": 8,
+    "datasets": 4,
+    "results": 70,
+    "note": "Upload order must not matter: ingesting the 12 PDFs in any order gives the same papers, citations, methods, datasets and results."
+  },
+
+  "entity_resolution": {
+    "GraphWalker-QA": ["GraphWalker-QA", "GraphWalker", "GW-QA"],
+    "DenseHop": ["DenseHop", "Dense-Hop"],
+    "KaveriHop": ["KaveriHop", "Kaveri-Hop"],
+    "TriHop-Bench": ["TriHop-Bench", "TriHop"],
+    "VaigaiQA_reference_variant": "P10 cites 'VaigaiQA: multi-hop QA in Tamil' — must resolve to P07, not create a stub",
+    "Revisiting_reference_variant": "P11 cites 'Revisiting graph gains: a reproduction of GraphWalker-QA' — must resolve to P08",
+    "erratum_trap": "P09 'Erratum: GraphFuse: ...' must NOT be merged with P06 'GraphFuse: ...'"
+  },
+
+  "pair_relationships": {
+    "P03-P08": {
+      "citation": "P08 cites P03 with intent 'reproduces'",
+      "shared_authors": ["Jonas Weber"],
+      "shared_datasets": ["KaveriHop"],
+      "result_links": "4 REPRODUCES links: 2-hop 50.3 (gold links) and 49.6 (predicted links) vs 50.1; 3-hop 39.5 (gold) and 35.1 (predicted) vs 39.8",
+      "claims": "C08 CONTRADICTS C03 (predicted vs gold entity links)"
+    },
+    "P06-P10": {
+      "citation": "P10 cites P06 with intent 'extends'",
+      "lineage": ["LiteGraphFuse", "GraphFuse"],
+      "shared_authors": ["Lena Fischer"],
+      "stale": "P10 quotes GraphFuse's 4-hop 22.7 EM, corrected to 19.4 by P09 (published before P10), and does not cite P09"
+    },
+    "P04-P12": {
+      "citation": "none in either direction",
+      "shared_datasets": ["KaveriHop"],
+      "similar_methods": "HopLens SIMILAR_TO HopRank (both rerank whole candidate chains from a dense retriever with a cross-encoder)",
+      "verdict": "P12 should probably cite P04"
+    }
+  },
+
+  "lineage": {
+    "LiteGraphFuse_ancestors": [["LiteGraphFuse", "GraphFuse", "HopRank", "DenseHop"], ["LiteGraphFuse", "GraphFuse", "GraphWalker-QA"]],
+    "DenseHop_descendants": [["LiteGraphFuse", "GraphFuse", "HopRank", "DenseHop"]],
+    "HopLens": "no declared parent; SIMILAR_TO HopRank"
+  },
+
+  "leaderboards": {
+    "KaveriHop 3-hop EM": [
+      {"method": "GraphFuse", "value": 46.3, "paper": "P06"},
+      {"method": "HopLens", "value": 44.8, "paper": "P12"},
+      {"method": "LiteGraphFuse", "value": 43.9, "paper": "P10"},
+      {"method": "GraphWalker-QA", "value": 39.8, "paper": "P03", "other_runs": "39.5 reproduced with gold links, 35.1 reproduced with predicted links (P08)"},
+      {"method": "HopRank", "value": 36.0, "paper": "P04", "other_runs": "35.4 reproduced (P08)"},
+      {"method": "DenseHop", "value": 31.5, "paper": "P02", "other_runs": "31.9 re-run by P03"},
+      {"method": "ChainTFIDF", "value": 22.4, "paper": "P02"}
+    ],
+    "TriHop-Bench 4-hop EM": [
+      {"method": "GraphFuse", "value": 19.4, "paper": "P06", "note": "corrected by P09; published as 22.7"},
+      {"method": "GraphWalker-QA", "value": 17.5, "paper": "P05"},
+      {"method": "HopRank", "value": 11.2, "paper": "P05"},
+      {"method": "DenseHop", "value": 9.0, "paper": "P05"}
+    ],
+    "KaveriHop latency (lower is better)": [
+      {"method": "LiteGraphFuse", "value": 105, "paper": "P10"},
+      {"method": "DenseHop", "value": 150, "paper": "P04"},
+      {"method": "HopRank", "value": 180, "paper": "P04"},
+      {"method": "GraphFuse", "value": 420, "paper": "P10"}
+    ],
+    "VaigaiQA 2-hop EM": [
+      {"method": "LiteGraphFuse", "value": 38.6, "paper": "P10"},
+      {"method": "DenseHop", "value": 33.0, "paper": "P07"},
+      {"method": "GraphWalker-QA", "value": 30.2, "paper": "P07"}
+    ]
+  },
+
+  "claims": {
+    "contradicts": [["C08", "C03"]],
+    "qualifies": [["C07", "C03"], ["C07", "C05"], ["C10b", "C07"]],
+    "supports": [["C04", "C03"], ["C05", "C03"], ["C09", "C06"], ["C11", "C07"], ["C11", "C08"]],
+    "sota_check": [
+      {"claim": "C12", "dataset": "KaveriHop", "split": "3-hop", "claimed": 44.8, "better": "GraphFuse 46.3 (P06)"},
+      {"claim": "C12", "dataset": "TriHop-Bench", "split": "3-hop", "claimed": 39.5, "better": "GraphFuse 41.2 (P06)"}
+    ],
+    "numeric_checks_that_pass": {
+      "C10": "LiteGraphFuse/GraphFuse EM = 55.0/57.9 = 95.0%; latency 105/420 = 0.25",
+      "C06": "GraphFuse beats GraphWalker-QA and HopRank on every split, including the corrected 4-hop 19.4 > 17.5"
+    }
+  },
+
+  "citation_hygiene": {
+    "missing_citations": {"P12": [{"paper": "P06", "score": 10, "why": "shared KaveriHop and TriHop-Bench; GraphFuse beats HopLens on 3 splits"}, {"paper": "P04", "score": 5, "why": "shared KaveriHop; HopLens similar to HopRank"}]},
+    "no_other_paper_scores_5_or_more": true,
+    "stale_citations": [{"paper": "P10", "cites": "P06", "correction": "P09"}],
+    "external_hubs": [
+      {"id": "ext-dpr2020", "cited_by": ["P01", "P03", "P04", "P12"], "real_paper": true},
+      {"id": "ext-hotpotqa2018", "cited_by": ["P01", "P02", "P05"], "real_paper": true},
+      {"id": "ext-brown2019", "cited_by": ["P07", "P08", "P11"], "real_paper": false},
+      {"id": "ext-rao2020", "cited_by": ["P01", "P02", "P03"], "real_paper": false}
+    ]
+  },
+
+  "research_gaps": {
+    "never_evaluated_in_tamil": ["GraphFuse", "HopRank", "HopLens"],
+    "never_on_trihop": ["LiteGraphFuse"],
+    "latency_never_reported_on": ["NarmadaQA", "TriHop-Bench", "VaigaiQA"],
+    "no_tamil_benchmark_beyond_2_hops": "VaigaiQA has only a 2-hop split",
+    "never_independently_reproduced": ["DenseHop", "GraphFuse", "LiteGraphFuse", "HopLens"],
+    "bottleneck_without_library_method": {"task": "Entity linking", "only_method": "LinkLite (external, 2019)", "claims": ["C07", "C08", "C11"]}
+  },
+
+  "people": {
+    "most_influential_paper_by_pagerank": "P01 (DenseHop)",
+    "bridge_authors_top2": ["Ananya Iyer", "Lena Fischer"],
+    "isolated_group": ["Hana Kobayashi", "Mateo Rossi"],
+    "isolated_group_explains": "The HopLens authors have no co-authorship ties to the rest of the field, consistent with P12 missing P04 and P06",
+    "affiliation_change": {"author": "Rahul Mehta", "history": [["University of Coromandel", 2021, 2023], ["Rhinebrook Technical University", 2024, 2025]]}
+  }
+}

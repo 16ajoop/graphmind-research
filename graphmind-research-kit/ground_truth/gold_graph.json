@@ -1,0 +1,5957 @@
+{
+ "_about": "Gold-standard graph for the synthetic corpus. Use it to (1) test analysis queries before extraction works ('oracle mode') and (2) score your extraction pipeline (precision/recall per relationship type).",
+ "nodes": [
+  {
+   "id": "inst-coromandel",
+   "label": "Institution",
+   "props": {
+    "id": "inst-coromandel",
+    "name": "University of Coromandel"
+   }
+  },
+  {
+   "id": "inst-rhinebrook",
+   "label": "Institution",
+   "props": {
+    "id": "inst-rhinebrook",
+    "name": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "id": "inst-bbit",
+   "label": "Institution",
+   "props": {
+    "id": "inst-bbit",
+    "name": "Bay of Bengal Institute of Technology"
+   }
+  },
+  {
+   "id": "inst-altamira",
+   "label": "Institution",
+   "props": {
+    "id": "inst-altamira",
+    "name": "Instituto Altamira"
+   }
+  },
+  {
+   "id": "inst-lagoon",
+   "label": "Institution",
+   "props": {
+    "id": "inst-lagoon",
+    "name": "Lagoon City University"
+   }
+  },
+  {
+   "id": "inst-vaigai",
+   "label": "Institution",
+   "props": {
+    "id": "inst-vaigai",
+    "name": "Vaigai Institute of Language Technology"
+   }
+  },
+  {
+   "id": "inst-northern",
+   "label": "Institution",
+   "props": {
+    "id": "inst-northern",
+    "name": "Northern Isles University"
+   }
+  },
+  {
+   "id": "venue-icrr",
+   "label": "Venue",
+   "props": {
+    "id": "venue-icrr",
+    "name": "International Conference on Retrieval and Reasoning (ICRR)",
+    "short": "ICRR"
+   }
+  },
+  {
+   "id": "venue-jals",
+   "label": "Venue",
+   "props": {
+    "id": "venue-jals",
+    "name": "Journal of Applied Language Systems (JALS)",
+    "short": "JALS"
+   }
+  },
+  {
+   "id": "venue-loresnlp",
+   "label": "Venue",
+   "props": {
+    "id": "venue-loresnlp",
+    "name": "Workshop on Low-Resource NLP (LoResNLP)",
+    "short": "LoResNLP"
+   }
+  },
+  {
+   "id": "venue-openprints",
+   "label": "Venue",
+   "props": {
+    "id": "venue-openprints",
+    "name": "OpenPrints preprint server",
+    "short": "OpenPrints"
+   }
+  },
+  {
+   "id": "task-mhqa",
+   "label": "Task",
+   "props": {
+    "id": "task-mhqa",
+    "name": "Multi-hop question answering",
+    "aliases": [
+     "multi-hop QA",
+     "multi-hop question answering"
+    ]
+   }
+  },
+  {
+   "id": "task-retrieval",
+   "label": "Task",
+   "props": {
+    "id": "task-retrieval",
+    "name": "Multi-hop passage retrieval",
+    "aliases": [
+     "passage retrieval",
+     "multi-hop retrieval"
+    ]
+   }
+  },
+  {
+   "id": "task-el",
+   "label": "Task",
+   "props": {
+    "id": "task-el",
+    "name": "Entity linking",
+    "aliases": [
+     "entity linking"
+    ]
+   }
+  },
+  {
+   "id": "metric-em",
+   "label": "Metric",
+   "props": {
+    "id": "metric-em",
+    "name": "Exact Match",
+    "aliases": [
+     "EM",
+     "exact match"
+    ],
+    "unit": "%",
+    "higher_is_better": true
+   }
+  },
+  {
+   "id": "metric-latency",
+   "label": "Metric",
+   "props": {
+    "id": "metric-latency",
+    "name": "Latency",
+    "aliases": [
+     "Latency (ms/query)",
+     "latency"
+    ],
+    "unit": "ms/query",
+    "higher_is_better": false
+   }
+  },
+  {
+   "id": "metric-el-acc",
+   "label": "Metric",
+   "props": {
+    "id": "metric-el-acc",
+    "name": "Entity linking accuracy",
+    "aliases": [
+     "EL accuracy",
+     "entity linking accuracy"
+    ],
+    "unit": "%",
+    "higher_is_better": true
+   }
+  },
+  {
+   "id": "ds-narmada",
+   "label": "Dataset",
+   "props": {
+    "id": "ds-narmada",
+    "name": "NarmadaQA",
+    "aliases": [
+     "NarmadaQA",
+     "Narmada-QA"
+    ],
+    "language": "English",
+    "splits": [
+     "2-hop"
+    ]
+   }
+  },
+  {
+   "id": "ds-kaveri",
+   "label": "Dataset",
+   "props": {
+    "id": "ds-kaveri",
+    "name": "KaveriHop",
+    "aliases": [
+     "KaveriHop",
+     "Kaveri-Hop"
+    ],
+    "language": "English",
+    "splits": [
+     "2-hop",
+     "3-hop"
+    ]
+   }
+  },
+  {
+   "id": "ds-trihop",
+   "label": "Dataset",
+   "props": {
+    "id": "ds-trihop",
+    "name": "TriHop-Bench",
+    "aliases": [
+     "TriHop-Bench",
+     "TriHop"
+    ],
+    "language": "English",
+    "splits": [
+     "3-hop",
+     "4-hop"
+    ]
+   }
+  },
+  {
+   "id": "ds-vaigai",
+   "label": "Dataset",
+   "props": {
+    "id": "ds-vaigai",
+    "name": "VaigaiQA",
+    "aliases": [
+     "VaigaiQA",
+     "Vaigai-QA"
+    ],
+    "language": "Tamil",
+    "splits": [
+     "2-hop"
+    ]
+   }
+  },
+  {
+   "id": "m-chaintfidf",
+   "label": "Method",
+   "props": {
+    "id": "m-chaintfidf",
+    "name": "ChainTFIDF",
+    "aliases": [
+     "ChainTFIDF",
+     "TF-IDF chain retriever"
+    ],
+    "family": "sparse"
+   }
+  },
+  {
+   "id": "m-densehop",
+   "label": "Method",
+   "props": {
+    "id": "m-densehop",
+    "name": "DenseHop",
+    "aliases": [
+     "DenseHop",
+     "Dense-Hop"
+    ],
+    "family": "dense"
+   }
+  },
+  {
+   "id": "m-graphwalker",
+   "label": "Method",
+   "props": {
+    "id": "m-graphwalker",
+    "name": "GraphWalker-QA",
+    "aliases": [
+     "GraphWalker-QA",
+     "GraphWalker",
+     "GW-QA"
+    ],
+    "family": "graph"
+   }
+  },
+  {
+   "id": "m-hoprank",
+   "label": "Method",
+   "props": {
+    "id": "m-hoprank",
+    "name": "HopRank",
+    "aliases": [
+     "HopRank",
+     "hop-aware re-scoring"
+    ],
+    "family": "dense"
+   }
+  },
+  {
+   "id": "m-graphfuse",
+   "label": "Method",
+   "props": {
+    "id": "m-graphfuse",
+    "name": "GraphFuse",
+    "aliases": [
+     "GraphFuse"
+    ],
+    "family": "hybrid"
+   }
+  },
+  {
+   "id": "m-litegraphfuse",
+   "label": "Method",
+   "props": {
+    "id": "m-litegraphfuse",
+    "name": "LiteGraphFuse",
+    "aliases": [
+     "LiteGraphFuse",
+     "Lite-GraphFuse"
+    ],
+    "family": "hybrid"
+   }
+  },
+  {
+   "id": "m-hoplens",
+   "label": "Method",
+   "props": {
+    "id": "m-hoplens",
+    "name": "HopLens",
+    "aliases": [
+     "HopLens"
+    ],
+    "family": "dense"
+   }
+  },
+  {
+   "id": "m-linklite",
+   "label": "Method",
+   "props": {
+    "id": "m-linklite",
+    "name": "LinkLite",
+    "aliases": [
+     "LinkLite"
+    ],
+    "family": "entity_linking"
+   }
+  },
+  {
+   "id": "ext-rao2020",
+   "label": "Paper",
+   "props": {
+    "id": "ext-rao2020",
+    "title": "NarmadaQA: A Two-Hop Question Answering Dataset over Encyclopedic Text",
+    "year": 2020,
+    "in_library": false,
+    "venue": "ICRR",
+    "real_paper": false
+   }
+  },
+  {
+   "id": "ext-brown2019",
+   "label": "Paper",
+   "props": {
+    "id": "ext-brown2019",
+    "title": "LinkLite: Lightweight Multilingual Entity Linking",
+    "year": 2019,
+    "in_library": false,
+    "venue": "JALS",
+    "real_paper": false
+   }
+  },
+  {
+   "id": "ext-dpr2020",
+   "label": "Paper",
+   "props": {
+    "id": "ext-dpr2020",
+    "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+    "year": 2020,
+    "in_library": false,
+    "venue": "EMNLP",
+    "real_paper": true
+   }
+  },
+  {
+   "id": "ext-hotpotqa2018",
+   "label": "Paper",
+   "props": {
+    "id": "ext-hotpotqa2018",
+    "title": "HotpotQA: A Dataset for Diverse, Explainable Multi-hop Question Answering",
+    "year": 2018,
+    "in_library": false,
+    "venue": "EMNLP",
+    "real_paper": true
+   }
+  },
+  {
+   "id": "auth-iyer",
+   "label": "Author",
+   "props": {
+    "id": "auth-iyer",
+    "name": "Ananya Iyer"
+   }
+  },
+  {
+   "id": "auth-mehta",
+   "label": "Author",
+   "props": {
+    "id": "auth-mehta",
+    "name": "Rahul Mehta"
+   }
+  },
+  {
+   "id": "auth-fischer",
+   "label": "Author",
+   "props": {
+    "id": "auth-fischer",
+    "name": "Lena Fischer"
+   }
+  },
+  {
+   "id": "auth-sundaram",
+   "label": "Author",
+   "props": {
+    "id": "auth-sundaram",
+    "name": "Meenakshi Sundaram"
+   }
+  },
+  {
+   "id": "auth-ruiz",
+   "label": "Author",
+   "props": {
+    "id": "auth-ruiz",
+    "name": "Tomás Ruiz"
+   }
+  },
+  {
+   "id": "auth-weber",
+   "label": "Author",
+   "props": {
+    "id": "auth-weber",
+    "name": "Jonas Weber"
+   }
+  },
+  {
+   "id": "auth-das",
+   "label": "Author",
+   "props": {
+    "id": "auth-das",
+    "name": "Priyanka Das"
+   }
+  },
+  {
+   "id": "auth-okafor",
+   "label": "Author",
+   "props": {
+    "id": "auth-okafor",
+    "name": "Sara Okafor"
+   }
+  },
+  {
+   "id": "auth-zhang",
+   "label": "Author",
+   "props": {
+    "id": "auth-zhang",
+    "name": "Wei Zhang"
+   }
+  },
+  {
+   "id": "auth-raman",
+   "label": "Author",
+   "props": {
+    "id": "auth-raman",
+    "name": "Kavitha Raman"
+   }
+  },
+  {
+   "id": "auth-selvam",
+   "label": "Author",
+   "props": {
+    "id": "auth-selvam",
+    "name": "Arun Selvam"
+   }
+  },
+  {
+   "id": "auth-kobayashi",
+   "label": "Author",
+   "props": {
+    "id": "auth-kobayashi",
+    "name": "Hana Kobayashi"
+   }
+  },
+  {
+   "id": "auth-rossi",
+   "label": "Author",
+   "props": {
+    "id": "auth-rossi",
+    "name": "Mateo Rossi"
+   }
+  },
+  {
+   "id": "P01",
+   "label": "Paper",
+   "props": {
+    "id": "P01",
+    "title": "DenseHop: Iterative Dense Retrieval for Multi-Hop Questions",
+    "year": 2021,
+    "published": "2021-05-10",
+    "in_library": true,
+    "file": "P01_densehop.pdf",
+    "keywords": [
+     "multi-hop retrieval",
+     "dense retrieval",
+     "question answering"
+    ],
+    "abstract": "Multi-hop questions require evidence from several passages, and a single retrieval step often misses the second passage. We present DenseHop, an iterative dense retriever that reformulates the query after each hop using the passages retrieved so far. On the two-hop NarmadaQA benchmark, DenseHop reaches 61.3 exact match (EM), compared with 54.8 EM for the sparse ChainTFIDF retriever. Iterative dense retrieval outperforms sparse chain retrieval on two-hop questions. We release code and trained encoders."
+   }
+  },
+  {
+   "id": "P02",
+   "label": "Paper",
+   "props": {
+    "id": "P02",
+    "title": "KaveriHop: A Benchmark for Two- and Three-Hop Question Answering",
+    "year": 2022,
+    "published": "2022-03-15",
+    "in_library": true,
+    "file": "P02_kaverihop.pdf",
+    "keywords": [
+     "benchmark",
+     "multi-hop question answering",
+     "dataset"
+    ],
+    "abstract": "Existing multi-hop QA benchmarks mostly contain two-hop questions. We introduce KaveriHop, a benchmark of 18,400 English questions split into 2-hop and 3-hop subsets, each with annotated bridge entities and supporting passages. Baselines degrade sharply with more hops: DenseHop falls from 48.2 EM on 2-hop to 31.5 EM on 3-hop questions. We release the data, the bridge-entity annotations and an evaluation script."
+   }
+  },
+  {
+   "id": "P03",
+   "label": "Paper",
+   "props": {
+    "id": "P03",
+    "title": "GraphWalker-QA: Answering Multi-Hop Questions by Walking Entity Graphs",
+    "year": 2022,
+    "published": "2022-09-20",
+    "in_library": true,
+    "file": "P03_graphwalker-qa.pdf",
+    "keywords": [
+     "graph-based retrieval",
+     "entity graph",
+     "multi-hop question answering"
+    ],
+    "abstract": "We propose GraphWalker-QA, which builds an entity graph over the corpus and answers multi-hop questions by walking from question entities to answer passages. On KaveriHop, GraphWalker-QA improves over DenseHop by 2.1 EM on 2-hop and 7.9 EM on 3-hop questions. Walking an entity graph gives larger gains on 3-hop questions than on 2-hop questions, suggesting that explicit structure helps longer reasoning chains."
+   }
+  },
+  {
+   "id": "P04",
+   "label": "Paper",
+   "props": {
+    "id": "P04",
+    "title": "HopRank: Hop-Aware Reranking for Dense Multi-Hop Retrieval",
+    "year": 2023,
+    "published": "2023-04-12",
+    "in_library": true,
+    "file": "P04_hoprank.pdf",
+    "keywords": [
+     "reranking",
+     "dense retrieval",
+     "multi-hop retrieval"
+    ],
+    "abstract": "We present HopRank, which extends DenseHop with a hop-aware reranker that re-scores candidate passage chains using cross-attention between hops. On KaveriHop, HopRank reaches 53.4 EM on 2-hop and 36.0 EM on 3-hop questions, adding only 30 ms of latency per query. Hop-aware reranking closes the gap to graph-based retrieval on 2-hop questions but not on 3-hop questions."
+   }
+  },
+  {
+   "id": "P05",
+   "label": "Paper",
+   "props": {
+    "id": "P05",
+    "title": "TriHop-Bench: Stress-Testing Retrieval on Three- and Four-Hop Questions",
+    "year": 2023,
+    "published": "2023-10-02",
+    "in_library": true,
+    "file": "P05_trihop-bench.pdf",
+    "keywords": [
+     "benchmark",
+     "multi-hop retrieval",
+     "evaluation"
+    ],
+    "abstract": "We introduce TriHop-Bench, 6,000 English questions requiring three or four reasoning hops, and evaluate three published retrievers using their released code. All of them lose accuracy as hops increase, but the graph-based GW-QA degrades least. The advantage of graph-based retrieval over dense retrieval grows as the number of hops increases."
+   }
+  },
+  {
+   "id": "P06",
+   "label": "Paper",
+   "props": {
+    "id": "P06",
+    "title": "GraphFuse: Fusing Dense and Graph Retrieval for Multi-Hop QA",
+    "year": 2024,
+    "published": "2024-03-18",
+    "in_library": true,
+    "file": "P06_graphfuse.pdf",
+    "keywords": [
+     "hybrid retrieval",
+     "fusion",
+     "multi-hop question answering"
+    ],
+    "abstract": "Dense and graph-based retrievers fail on different questions. GraphFuse runs a GraphWalker-QA walk and a HopRank chain search in parallel and merges their candidate chains with a learned fusion scorer. GraphFuse reaches 57.9 and 46.3 EM on KaveriHop 2-hop and 3-hop, and 41.2 and 22.7 EM on TriHop-Bench 3-hop and 4-hop. Fusing dense and graph retrieval outperforms either approach alone at every hop count."
+   }
+  },
+  {
+   "id": "P07",
+   "label": "Paper",
+   "props": {
+    "id": "P07",
+    "title": "VaigaiQA: Multi-Hop Question Answering in Tamil",
+    "year": 2024,
+    "published": "2024-06-05",
+    "in_library": true,
+    "file": "P07_vaigaiqa.pdf",
+    "keywords": [
+     "Tamil",
+     "low-resource languages",
+     "multi-hop question answering",
+     "dataset"
+    ],
+    "abstract": "We introduce VaigaiQA, 5,200 two-hop questions written natively in Tamil over Tamil encyclopedic text. We evaluate Dense-Hop and GraphWalker-QA, using the LinkLite entity linker to build the graph. Unlike results reported for English, the graph-based method trails the dense one: 30.2 versus 33.0 EM. LinkLite links only 61.0% of Tamil mentions correctly. On Tamil questions, graph-based retrieval performs worse than dense retrieval because entity linking is unreliable."
+   }
+  },
+  {
+   "id": "P08",
+   "label": "Paper",
+   "props": {
+    "id": "P08",
+    "title": "Revisiting Graph Gains: A Reproduction Study of GraphWalker-QA",
+    "year": 2024,
+    "published": "2024-09-10",
+    "in_library": true,
+    "file": "P08_revisiting-graph-gains.pdf",
+    "keywords": [
+     "reproducibility",
+     "graph-based retrieval",
+     "entity linking"
+    ],
+    "abstract": "We reproduce GraphWalker-QA on KaveriHop. With the gold entity annotations used in the original paper we match its results (39.5 versus 39.8 EM on 3-hop questions). With entity links predicted by LinkLite, 3-hop EM drops to 35.1, slightly below HopRank at 35.4. GraphWalker-QA's 3-hop advantage depends on gold entity links; with predicted links it falls below HopRank."
+   }
+  },
+  {
+   "id": "P09",
+   "label": "Paper",
+   "props": {
+    "id": "P09",
+    "title": "Erratum: GraphFuse: Fusing Dense and Graph Retrieval for Multi-Hop QA",
+    "year": 2025,
+    "published": "2025-02-14",
+    "in_library": true,
+    "file": "P09_erratum-graphfuse.pdf",
+    "keywords": [
+     "erratum",
+     "evaluation",
+     "multi-hop question answering"
+    ],
+    "abstract": "A bug in our evaluation script counted some 4-hop answers with trailing punctuation as correct. The corrected 4-hop exact match of GraphFuse on TriHop-Bench is 19.4, not 22.7 as published. All other numbers are unchanged."
+   }
+  },
+  {
+   "id": "P10",
+   "label": "Paper",
+   "props": {
+    "id": "P10",
+    "title": "LiteGraphFuse: Distilling Fused Retrieval for Small Language Models",
+    "year": 2025,
+    "published": "2025-06-20",
+    "in_library": true,
+    "file": "P10_litegraphfuse.pdf",
+    "keywords": [
+     "distillation",
+     "efficiency",
+     "low-resource languages",
+     "hybrid retrieval"
+    ],
+    "abstract": "GraphFuse is accurate but slow, which limits its use with small language models and on modest hardware. LiteGraphFuse distils the GraphFuse fusion scorer into a 3-billion-parameter student and prunes the graph walk to two expansions per hop. On KaveriHop it reaches 55.0 and 43.9 EM, 95% of GraphFuse, at 105 ms per query instead of 420 ms. On the Tamil VaigaiQA benchmark it reaches 38.6 EM, above both Dense-Hop and GraphWalker-QA."
+   }
+  },
+  {
+   "id": "P11",
+   "label": "Paper",
+   "props": {
+    "id": "P11",
+    "title": "Entity Linking Is the Bottleneck: Error Analysis of Graph Retrieval in Low-Resource Languages",
+    "year": 2025,
+    "published": "2025-07-30",
+    "in_library": true,
+    "file": "P11_entity-linking-bottleneck.pdf",
+    "keywords": [
+     "entity linking",
+     "error analysis",
+     "Tamil",
+     "graph-based retrieval"
+    ],
+    "abstract": "Two recent findings question graph-based multi-hop retrieval: a reproduction study found that GraphWalker-QA's 3-hop gains need gold entity links, and a Tamil benchmark found graph retrieval below dense retrieval. We analyse 600 failed questions from both settings. In 71% of failures the first wrong step is an entity-linking error. LinkLite reaches 84.0% accuracy on English KaveriHop passages but 61.0% on Tamil. Low entity-linking accuracy explains both the failed reproduction of GraphWalker-QA and the drop of graph retrieval on Tamil."
+   }
+  },
+  {
+   "id": "P12",
+   "label": "Paper",
+   "props": {
+    "id": "P12",
+    "title": "HopLens: Interpretable Path Scoring for Multi-Hop Retrieval",
+    "year": 2026,
+    "published": "2026-02-03",
+    "in_library": true,
+    "file": "P12_hoplens.pdf",
+    "keywords": [
+     "interpretability",
+     "reranking",
+     "multi-hop retrieval"
+    ],
+    "abstract": "Multi-hop retrievers rarely explain why a chain of passages was chosen. HopLens scores each candidate chain with an interpretable path-aware reranking module that assigns a weight to every hop transition. HopLens reaches 56.2 and 44.8 EM on KaveriHop 2-hop and 3-hop, and 39.5 EM on TriHop-Bench 3-hop. HopLens achieves state-of-the-art exact match on 3-hop questions in both KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P01-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P01-01",
+    "value": 54.8,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "ChainTFIDF",
+    "paper": "P01",
+    "table": "Table 1: Exact match on NarmadaQA (2-hop)."
+   }
+  },
+  {
+   "id": "R-P01-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P01-02",
+    "value": 61.3,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P01",
+    "table": "Table 1: Exact match on NarmadaQA (2-hop)."
+   }
+  },
+  {
+   "id": "R-P02-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P02-01",
+    "value": 39.7,
+    "split": "2-hop",
+    "origin": "baseline_run",
+    "setting": "not reported",
+    "reported_as": "ChainTFIDF",
+    "paper": "P02",
+    "table": "Table 1: Exact match on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P02-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P02-02",
+    "value": 22.4,
+    "split": "3-hop",
+    "origin": "baseline_run",
+    "setting": "not reported",
+    "reported_as": "ChainTFIDF",
+    "paper": "P02",
+    "table": "Table 1: Exact match on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P02-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P02-03",
+    "value": 48.2,
+    "split": "2-hop",
+    "origin": "baseline_run",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P02",
+    "table": "Table 1: Exact match on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P02-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P02-04",
+    "value": 31.5,
+    "split": "3-hop",
+    "origin": "baseline_run",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P02",
+    "table": "Table 1: Exact match on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P03-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P03-01",
+    "value": 61.3,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P03",
+    "table": "Table 1: Exact match on NarmadaQA and KaveriHop."
+   }
+  },
+  {
+   "id": "R-P03-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P03-02",
+    "value": 62.0,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "string-match entity links",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P03",
+    "table": "Table 1: Exact match on NarmadaQA and KaveriHop."
+   }
+  },
+  {
+   "id": "R-P03-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P03-03",
+    "value": 48.0,
+    "split": "2-hop",
+    "origin": "baseline_run",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P03",
+    "table": "Table 1: Exact match on NarmadaQA and KaveriHop."
+   }
+  },
+  {
+   "id": "R-P03-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P03-04",
+    "value": 31.9,
+    "split": "3-hop",
+    "origin": "baseline_run",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P03",
+    "table": "Table 1: Exact match on NarmadaQA and KaveriHop."
+   }
+  },
+  {
+   "id": "R-P03-05",
+   "label": "Result",
+   "props": {
+    "id": "R-P03-05",
+    "value": 50.1,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P03",
+    "table": "Table 1: Exact match on NarmadaQA and KaveriHop."
+   }
+  },
+  {
+   "id": "R-P03-06",
+   "label": "Result",
+   "props": {
+    "id": "R-P03-06",
+    "value": 39.8,
+    "split": "3-hop",
+    "origin": "proposed",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P03",
+    "table": "Table 1: Exact match on NarmadaQA and KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-01",
+    "value": 48.2,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-02",
+    "value": 31.5,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-03",
+    "value": 150.0,
+    "split": "all",
+    "origin": "baseline_run",
+    "setting": "single GPU",
+    "reported_as": "DenseHop",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-04",
+    "value": 50.1,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-05",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-05",
+    "value": 39.8,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-06",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-06",
+    "value": 53.4,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "HopRank",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-07",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-07",
+    "value": 36.0,
+    "split": "3-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "HopRank",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P04-08",
+   "label": "Result",
+   "props": {
+    "id": "R-P04-08",
+    "value": 180.0,
+    "split": "all",
+    "origin": "proposed",
+    "setting": "single GPU",
+    "reported_as": "HopRank",
+    "paper": "P04",
+    "table": "Table 1: Exact match and latency on KaveriHop."
+   }
+  },
+  {
+   "id": "R-P05-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P05-01",
+    "value": 28.4,
+    "split": "3-hop",
+    "origin": "baseline_run",
+    "setting": "released code",
+    "reported_as": "DenseHop",
+    "paper": "P05",
+    "table": "Table 1: Exact match on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P05-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P05-02",
+    "value": 9.0,
+    "split": "4-hop",
+    "origin": "baseline_run",
+    "setting": "released code",
+    "reported_as": "DenseHop",
+    "paper": "P05",
+    "table": "Table 1: Exact match on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P05-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P05-03",
+    "value": 34.7,
+    "split": "3-hop",
+    "origin": "baseline_run",
+    "setting": "released code",
+    "reported_as": "GW-QA",
+    "paper": "P05",
+    "table": "Table 1: Exact match on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P05-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P05-04",
+    "value": 17.5,
+    "split": "4-hop",
+    "origin": "baseline_run",
+    "setting": "released code",
+    "reported_as": "GW-QA",
+    "paper": "P05",
+    "table": "Table 1: Exact match on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P05-05",
+   "label": "Result",
+   "props": {
+    "id": "R-P05-05",
+    "value": 31.9,
+    "split": "3-hop",
+    "origin": "baseline_run",
+    "setting": "released code",
+    "reported_as": "HopRank",
+    "paper": "P05",
+    "table": "Table 1: Exact match on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P05-06",
+   "label": "Result",
+   "props": {
+    "id": "R-P05-06",
+    "value": 11.2,
+    "split": "4-hop",
+    "origin": "baseline_run",
+    "setting": "released code",
+    "reported_as": "HopRank",
+    "paper": "P05",
+    "table": "Table 1: Exact match on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-01",
+    "value": 50.1,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-02",
+    "value": 39.8,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-03",
+    "value": 34.7,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "released code",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-04",
+    "value": 17.5,
+    "split": "4-hop",
+    "origin": "quoted",
+    "setting": "released code",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-05",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-05",
+    "value": 53.4,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "HopRank",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-06",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-06",
+    "value": 36.0,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "HopRank",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-07",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-07",
+    "value": 31.9,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "released code",
+    "reported_as": "HopRank",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-08",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-08",
+    "value": 11.2,
+    "split": "4-hop",
+    "origin": "quoted",
+    "setting": "released code",
+    "reported_as": "HopRank",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-09",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-09",
+    "value": 57.9,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-10",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-10",
+    "value": 46.3,
+    "split": "3-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-11",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-11",
+    "value": 41.2,
+    "split": "3-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P06-12",
+   "label": "Result",
+   "props": {
+    "id": "R-P06-12",
+    "value": 22.7,
+    "split": "4-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P06",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P07-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P07-01",
+    "value": 33.0,
+    "split": "2-hop",
+    "origin": "baseline_run",
+    "setting": "multilingual encoders",
+    "reported_as": "Dense-Hop",
+    "paper": "P07",
+    "table": "Table 1: Results on VaigaiQA (2-hop)."
+   }
+  },
+  {
+   "id": "R-P07-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P07-02",
+    "value": 30.2,
+    "split": "2-hop",
+    "origin": "baseline_run",
+    "setting": "LinkLite predicted entity links",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P07",
+    "table": "Table 1: Results on VaigaiQA (2-hop)."
+   }
+  },
+  {
+   "id": "R-P07-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P07-03",
+    "value": 61.0,
+    "split": "all",
+    "origin": "baseline_run",
+    "setting": "Tamil passages",
+    "reported_as": "LinkLite",
+    "paper": "P07",
+    "table": "Table 1: Results on VaigaiQA (2-hop)."
+   }
+  },
+  {
+   "id": "R-P08-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-01",
+    "value": 50.1,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GW-QA",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P08-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-02",
+    "value": 39.8,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GW-QA",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P08-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-03",
+    "value": 50.3,
+    "split": "2-hop",
+    "origin": "reproduced",
+    "setting": "gold entity links",
+    "reported_as": "GW-QA",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P08-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-04",
+    "value": 39.5,
+    "split": "3-hop",
+    "origin": "reproduced",
+    "setting": "gold entity links",
+    "reported_as": "GW-QA",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P08-05",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-05",
+    "value": 49.6,
+    "split": "2-hop",
+    "origin": "reproduced",
+    "setting": "LinkLite predicted entity links",
+    "reported_as": "GW-QA",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P08-06",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-06",
+    "value": 35.1,
+    "split": "3-hop",
+    "origin": "reproduced",
+    "setting": "LinkLite predicted entity links",
+    "reported_as": "GW-QA",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P08-07",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-07",
+    "value": 53.1,
+    "split": "2-hop",
+    "origin": "reproduced",
+    "setting": "not reported",
+    "reported_as": "HopRank",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P08-08",
+   "label": "Result",
+   "props": {
+    "id": "R-P08-08",
+    "value": 35.4,
+    "split": "3-hop",
+    "origin": "reproduced",
+    "setting": "not reported",
+    "reported_as": "HopRank",
+    "paper": "P08",
+    "table": "Table 1: Reproduction on KaveriHop (exact match)."
+   }
+  },
+  {
+   "id": "R-P09-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P09-01",
+    "value": 22.7,
+    "split": "4-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P09",
+    "table": "Table 1: Corrected 4-hop result on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P09-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P09-02",
+    "value": 19.4,
+    "split": "4-hop",
+    "origin": "corrected",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P09",
+    "table": "Table 1: Corrected 4-hop result on TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P10-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-01",
+    "value": 57.9,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-02",
+    "value": 46.3,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "GraphFuse",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-03",
+    "value": 420.0,
+    "split": "all",
+    "origin": "baseline_run",
+    "setting": "same GPU",
+    "reported_as": "GraphFuse",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-04",
+    "value": 55.0,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "3B student",
+    "reported_as": "LiteGraphFuse",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-05",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-05",
+    "value": 43.9,
+    "split": "3-hop",
+    "origin": "proposed",
+    "setting": "3B student",
+    "reported_as": "LiteGraphFuse",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-06",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-06",
+    "value": 105.0,
+    "split": "all",
+    "origin": "proposed",
+    "setting": "same GPU",
+    "reported_as": "LiteGraphFuse",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-07",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-07",
+    "value": 33.0,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "multilingual encoders",
+    "reported_as": "Dense-Hop",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-08",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-08",
+    "value": 30.2,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "LinkLite predicted entity links",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P10-09",
+   "label": "Result",
+   "props": {
+    "id": "R-P10-09",
+    "value": 38.6,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "3B student",
+    "reported_as": "LiteGraphFuse",
+    "paper": "P10",
+    "table": "Table 1: Exact match and latency."
+   }
+  },
+  {
+   "id": "R-P11-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P11-01",
+    "value": 84.0,
+    "split": "all",
+    "origin": "baseline_run",
+    "setting": "English passages",
+    "reported_as": "LinkLite",
+    "paper": "P11",
+    "table": "Table 1: Entity linking accuracy of LinkLite."
+   }
+  },
+  {
+   "id": "R-P11-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P11-02",
+    "value": 61.0,
+    "split": "all",
+    "origin": "quoted",
+    "setting": "Tamil passages",
+    "reported_as": "LinkLite",
+    "paper": "P11",
+    "table": "Table 1: Entity linking accuracy of LinkLite."
+   }
+  },
+  {
+   "id": "R-P12-01",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-01",
+    "value": 48.2,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P12-02",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-02",
+    "value": 31.5,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "not reported",
+    "reported_as": "DenseHop",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P12-03",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-03",
+    "value": 50.1,
+    "split": "2-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P12-04",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-04",
+    "value": 39.8,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "dataset entity annotations",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P12-05",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-05",
+    "value": 34.7,
+    "split": "3-hop",
+    "origin": "quoted",
+    "setting": "released code",
+    "reported_as": "GraphWalker-QA",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P12-06",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-06",
+    "value": 56.2,
+    "split": "2-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "HopLens",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P12-07",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-07",
+    "value": 44.8,
+    "split": "3-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "HopLens",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "R-P12-08",
+   "label": "Result",
+   "props": {
+    "id": "R-P12-08",
+    "value": 39.5,
+    "split": "3-hop",
+    "origin": "proposed",
+    "setting": "not reported",
+    "reported_as": "HopLens",
+    "paper": "P12",
+    "table": "Table 1: Exact match on KaveriHop and TriHop-Bench."
+   }
+  },
+  {
+   "id": "C01",
+   "label": "Claim",
+   "props": {
+    "id": "C01",
+    "text": "Iterative dense retrieval outperforms sparse chain retrieval on two-hop questions.",
+    "type": "comparative",
+    "section": "5 Conclusion",
+    "paper": "P01"
+   }
+  },
+  {
+   "id": "C02",
+   "label": "Claim",
+   "props": {
+    "id": "C02",
+    "text": "Accuracy of existing retrievers drops sharply from 2-hop to 3-hop questions.",
+    "type": "observational",
+    "section": "4 Results",
+    "paper": "P02"
+   }
+  },
+  {
+   "id": "C03",
+   "label": "Claim",
+   "props": {
+    "id": "C03",
+    "text": "Walking an entity graph gives larger gains on 3-hop questions than on 2-hop questions.",
+    "type": "comparative",
+    "section": "4 Analysis",
+    "paper": "P03"
+   }
+  },
+  {
+   "id": "C04",
+   "label": "Claim",
+   "props": {
+    "id": "C04",
+    "text": "Hop-aware reranking closes the gap to graph-based retrieval on 2-hop questions but not on 3-hop questions.",
+    "type": "comparative",
+    "section": "4 Discussion",
+    "paper": "P04"
+   }
+  },
+  {
+   "id": "C05",
+   "label": "Claim",
+   "props": {
+    "id": "C05",
+    "text": "The advantage of graph-based retrieval over dense retrieval grows as the number of hops increases.",
+    "type": "comparative",
+    "section": "4 Results",
+    "paper": "P05"
+   }
+  },
+  {
+   "id": "C06",
+   "label": "Claim",
+   "props": {
+    "id": "C06",
+    "text": "Fusing dense and graph retrieval outperforms either approach alone at every hop count.",
+    "type": "comparative",
+    "section": "4 Conclusion",
+    "paper": "P06"
+   }
+  },
+  {
+   "id": "C07",
+   "label": "Claim",
+   "props": {
+    "id": "C07",
+    "text": "On Tamil questions, graph-based retrieval performs worse than dense retrieval because entity linking is unreliable.",
+    "type": "causal",
+    "section": "4 Results",
+    "paper": "P07"
+   }
+  },
+  {
+   "id": "C08",
+   "label": "Claim",
+   "props": {
+    "id": "C08",
+    "text": "GraphWalker-QA's 3-hop advantage depends on gold entity links; with predicted links it falls below HopRank.",
+    "type": "comparative",
+    "section": "4 Discussion",
+    "paper": "P08"
+   }
+  },
+  {
+   "id": "C09",
+   "label": "Claim",
+   "props": {
+    "id": "C09",
+    "text": "The corrected 4-hop result does not change the paper's conclusions, since GraphFuse still outperforms both single retrievers.",
+    "type": "observational",
+    "section": "2 Impact",
+    "paper": "P09"
+   }
+  },
+  {
+   "id": "C10",
+   "label": "Claim",
+   "props": {
+    "id": "C10",
+    "text": "Distillation keeps 95% of GraphFuse's accuracy at about one quarter of its latency.",
+    "type": "efficiency",
+    "section": "3 Experiments",
+    "paper": "P10"
+   }
+  },
+  {
+   "id": "C10b",
+   "label": "Claim",
+   "props": {
+    "id": "C10b",
+    "text": "Fusion helps on Tamil even though graph retrieval alone does not.",
+    "type": "comparative",
+    "section": "3 Experiments",
+    "paper": "P10"
+   }
+  },
+  {
+   "id": "C11",
+   "label": "Claim",
+   "props": {
+    "id": "C11",
+    "text": "Low entity-linking accuracy explains both the failed reproduction of GraphWalker-QA and the drop of graph retrieval on Tamil.",
+    "type": "causal",
+    "section": "3 Conclusion",
+    "paper": "P11"
+   }
+  },
+  {
+   "id": "C12",
+   "label": "Claim",
+   "props": {
+    "id": "C12",
+    "text": "HopLens achieves state-of-the-art exact match on 3-hop questions in both KaveriHop and TriHop-Bench.",
+    "type": "sota",
+    "section": "4 Conclusion",
+    "paper": "P12",
+    "scope": [
+     "ds-kaveri|3-hop|metric-em",
+     "ds-trihop|3-hop|metric-em"
+    ]
+   }
+  }
+ ],
+ "edges": [
+  {
+   "src": "ds-narmada",
+   "type": "FOR_TASK",
+   "dst": "task-mhqa",
+   "props": {}
+  },
+  {
+   "src": "ds-kaveri",
+   "type": "FOR_TASK",
+   "dst": "task-mhqa",
+   "props": {}
+  },
+  {
+   "src": "ds-trihop",
+   "type": "FOR_TASK",
+   "dst": "task-mhqa",
+   "props": {}
+  },
+  {
+   "src": "ds-vaigai",
+   "type": "FOR_TASK",
+   "dst": "task-mhqa",
+   "props": {}
+  },
+  {
+   "src": "m-chaintfidf",
+   "type": "FOR_TASK",
+   "dst": "task-retrieval",
+   "props": {}
+  },
+  {
+   "src": "m-densehop",
+   "type": "FOR_TASK",
+   "dst": "task-retrieval",
+   "props": {}
+  },
+  {
+   "src": "m-graphwalker",
+   "type": "FOR_TASK",
+   "dst": "task-retrieval",
+   "props": {}
+  },
+  {
+   "src": "m-hoprank",
+   "type": "FOR_TASK",
+   "dst": "task-retrieval",
+   "props": {}
+  },
+  {
+   "src": "m-hoprank",
+   "type": "EXTENDS",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "m-graphfuse",
+   "type": "FOR_TASK",
+   "dst": "task-retrieval",
+   "props": {}
+  },
+  {
+   "src": "m-graphfuse",
+   "type": "EXTENDS",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "m-graphfuse",
+   "type": "EXTENDS",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "m-litegraphfuse",
+   "type": "FOR_TASK",
+   "dst": "task-retrieval",
+   "props": {}
+  },
+  {
+   "src": "m-litegraphfuse",
+   "type": "EXTENDS",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "m-hoplens",
+   "type": "FOR_TASK",
+   "dst": "task-retrieval",
+   "props": {}
+  },
+  {
+   "src": "m-linklite",
+   "type": "FOR_TASK",
+   "dst": "task-el",
+   "props": {}
+  },
+  {
+   "src": "m-hoplens",
+   "type": "SIMILAR_TO",
+   "dst": "m-hoprank",
+   "props": {
+    "basis": "both rerank whole candidate chains from a dense retriever with a cross-encoder",
+    "detected_by": "method-description embedding similarity"
+   }
+  },
+  {
+   "src": "ext-rao2020",
+   "type": "PROPOSES",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "ext-brown2019",
+   "type": "PROPOSES",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "ext-rao2020",
+   "type": "INTRODUCES",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "P01",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-icrr",
+   "props": {}
+  },
+  {
+   "src": "auth-iyer",
+   "type": "WROTE",
+   "dst": "P01",
+   "props": {
+    "position": 1,
+    "affiliation": "University of Coromandel"
+   }
+  },
+  {
+   "src": "auth-mehta",
+   "type": "WROTE",
+   "dst": "P01",
+   "props": {
+    "position": 2,
+    "affiliation": "University of Coromandel"
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "WROTE",
+   "dst": "P01",
+   "props": {
+    "position": 3,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "P01",
+   "type": "CITES",
+   "dst": "ext-dpr2020",
+   "props": {
+    "intent": "uses_method",
+    "ref_no": 1,
+    "contexts": [
+     "Dense encoders [1] capture meaning but retrieve only once.",
+     "Single-step dense retrieval was popularised by dense passage retrieval [1].",
+     "DenseHop uses a question encoder and a passage encoder initialised from dense passage retrieval [1]."
+    ]
+   }
+  },
+  {
+   "src": "P01",
+   "type": "CITES",
+   "dst": "ext-rao2020",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 2,
+    "contexts": [
+     "Sparse chain retrievers [2] follow lexical overlap between passages and fail when the bridge entity is paraphrased.",
+     "Multi-hop datasets such as HotpotQA [3] and NarmadaQA [2] motivated chained retrieval.",
+     "[2] introduced NarmadaQA together with the ChainTFIDF baseline, which we use as our main comparison.",
+     "We evaluate on the 2-hop split of NarmadaQA [2] and report exact match of the final answer produced by a fixed reader.",
+     "[2]."
+    ]
+   }
+  },
+  {
+   "src": "P01",
+   "type": "CITES",
+   "dst": "ext-hotpotqa2018",
+   "props": {
+    "intent": "background",
+    "ref_no": 3,
+    "contexts": [
+     "Multi-hop datasets such as HotpotQA [3] and NarmadaQA [2] motivated chained retrieval."
+    ]
+   }
+  },
+  {
+   "src": "P01",
+   "type": "PROPOSES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P01",
+   "type": "EVALUATES_ON",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "P01",
+   "type": "USES",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-icrr",
+   "props": {}
+  },
+  {
+   "src": "auth-sundaram",
+   "type": "WROTE",
+   "dst": "P02",
+   "props": {
+    "position": 1,
+    "affiliation": "University of Coromandel"
+   }
+  },
+  {
+   "src": "auth-iyer",
+   "type": "WROTE",
+   "dst": "P02",
+   "props": {
+    "position": 2,
+    "affiliation": "University of Coromandel"
+   }
+  },
+  {
+   "src": "auth-ruiz",
+   "type": "WROTE",
+   "dst": "P02",
+   "props": {
+    "position": 3,
+    "affiliation": "Instituto Altamira"
+   }
+  },
+  {
+   "src": "P02",
+   "type": "CITES",
+   "dst": "ext-hotpotqa2018",
+   "props": {
+    "intent": "background",
+    "ref_no": 1,
+    "contexts": [
+     "Benchmarks such as HotpotQA [1] and NarmadaQA [2] made two-hop reasoning measurable, but real questions often need three or more steps."
+    ]
+   }
+  },
+  {
+   "src": "P02",
+   "type": "CITES",
+   "dst": "ext-rao2020",
+   "props": {
+    "intent": "background",
+    "ref_no": 2,
+    "contexts": [
+     "Benchmarks such as HotpotQA [1] and NarmadaQA [2] made two-hop reasoning measurable, but real questions often need three or more steps.",
+     "We run two baselines: the sparse ChainTFIDF retriever [2] and the iterative dense retriever DenseHop [3], using its released code."
+    ]
+   }
+  },
+  {
+   "src": "P02",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "uses_method",
+    "ref_no": 3,
+    "contexts": [
+     "We run two baselines: the sparse ChainTFIDF retriever [2] and the iterative dense retriever DenseHop [3], using its released code."
+    ]
+   }
+  },
+  {
+   "src": "P02",
+   "type": "INTRODUCES",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "USES",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "USES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-icrr",
+   "props": {}
+  },
+  {
+   "src": "auth-fischer",
+   "type": "WROTE",
+   "dst": "P03",
+   "props": {
+    "position": 1,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "auth-weber",
+   "type": "WROTE",
+   "dst": "P03",
+   "props": {
+    "position": 2,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "WROTE",
+   "dst": "P03",
+   "props": {
+    "position": 3,
+    "affiliation": "Bay of Bengal Institute of Technology"
+   }
+  },
+  {
+   "src": "P03",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 1,
+    "contexts": [
+     "Dense retrievers such as DenseHop [1] reformulate queries in vector space, but each hop can drift away from the bridge entity.",
+     "We compare against DenseHop [1]."
+    ]
+   }
+  },
+  {
+   "src": "P03",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 2,
+    "contexts": [
+     "For KaveriHop [2] we take entity links from the dataset's entity annotations; for NarmadaQA [3] we use string matching.",
+     "On NarmadaQA we quote its published number; on KaveriHop [2] we re-run DenseHop with the released code, obtaining 48.0 and 31.9 EM, close to the numbers in the KaveriHop paper."
+    ]
+   }
+  },
+  {
+   "src": "P03",
+   "type": "CITES",
+   "dst": "ext-rao2020",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 3,
+    "contexts": [
+     "For KaveriHop [2] we take entity links from the dataset's entity annotations; for NarmadaQA [3] we use string matching."
+    ]
+   }
+  },
+  {
+   "src": "P03",
+   "type": "CITES",
+   "dst": "ext-dpr2020",
+   "props": {
+    "intent": "background",
+    "ref_no": 4,
+    "contexts": [
+     "Building on the success of dense passage retrieval [4], we instead make bridge entities explicit: passages become nodes connected through shared entities, and retrieval becomes a walk."
+    ]
+   }
+  },
+  {
+   "src": "P03",
+   "type": "PROPOSES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "EVALUATES_ON",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "USES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-icrr",
+   "props": {}
+  },
+  {
+   "src": "auth-mehta",
+   "type": "WROTE",
+   "dst": "P04",
+   "props": {
+    "position": 1,
+    "affiliation": "University of Coromandel"
+   }
+  },
+  {
+   "src": "auth-okafor",
+   "type": "WROTE",
+   "dst": "P04",
+   "props": {
+    "position": 2,
+    "affiliation": "Lagoon City University"
+   }
+  },
+  {
+   "src": "auth-iyer",
+   "type": "WROTE",
+   "dst": "P04",
+   "props": {
+    "position": 3,
+    "affiliation": "University of Coromandel"
+   }
+  },
+  {
+   "src": "P04",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "extends",
+    "ref_no": 1,
+    "contexts": [
+     "DenseHop [1] scores each hop independently, so an early mistake cannot be undone.",
+     "HopRank builds on DenseHop [1]: we take its top 50 candidate chains and re-score each chain with a cross-encoder that attends across all passages in the chain."
+    ]
+   }
+  },
+  {
+   "src": "P04",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 2,
+    "contexts": [
+     "We evaluate on KaveriHop [2] and compare against DenseHop and the graph-based GraphWalker-QA [3], quoting their published numbers."
+    ]
+   }
+  },
+  {
+   "src": "P04",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 3,
+    "contexts": [
+     "We evaluate on KaveriHop [2] and compare against DenseHop and the graph-based GraphWalker-QA [3], quoting their published numbers."
+    ]
+   }
+  },
+  {
+   "src": "P04",
+   "type": "CITES",
+   "dst": "ext-dpr2020",
+   "props": {
+    "intent": "background",
+    "ref_no": 4,
+    "contexts": [
+     "Like most dense systems it inherits encoders from dense passage retrieval [4]."
+    ]
+   }
+  },
+  {
+   "src": "P04",
+   "type": "PROPOSES",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "USES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-jals",
+   "props": {}
+  },
+  {
+   "src": "auth-ruiz",
+   "type": "WROTE",
+   "dst": "P05",
+   "props": {
+    "position": 1,
+    "affiliation": "Instituto Altamira"
+   }
+  },
+  {
+   "src": "auth-sundaram",
+   "type": "WROTE",
+   "dst": "P05",
+   "props": {
+    "position": 2,
+    "affiliation": "University of Coromandel"
+   }
+  },
+  {
+   "src": "auth-zhang",
+   "type": "WROTE",
+   "dst": "P05",
+   "props": {
+    "position": 3,
+    "affiliation": "Instituto Altamira"
+   }
+  },
+  {
+   "src": "P05",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "background",
+    "ref_no": 1,
+    "contexts": [
+     "KaveriHop [1] stops at three hops, and older benchmarks such as HotpotQA [5] at two."
+    ]
+   }
+  },
+  {
+   "src": "P05",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 2,
+    "contexts": [
+     "We evaluate DenseHop [2], GW-QA [3] and HopRank [4], each run with the authors' released code and default settings."
+    ]
+   }
+  },
+  {
+   "src": "P05",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 3,
+    "contexts": [
+     "We evaluate DenseHop [2], GW-QA [3] and HopRank [4], each run with the authors' released code and default settings."
+    ]
+   }
+  },
+  {
+   "src": "P05",
+   "type": "CITES",
+   "dst": "P04",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 4,
+    "contexts": [
+     "We evaluate DenseHop [2], GW-QA [3] and HopRank [4], each run with the authors' released code and default settings."
+    ]
+   }
+  },
+  {
+   "src": "P05",
+   "type": "CITES",
+   "dst": "ext-hotpotqa2018",
+   "props": {
+    "intent": "background",
+    "ref_no": 5,
+    "contexts": [
+     "KaveriHop [1] stops at three hops, and older benchmarks such as HotpotQA [5] at two."
+    ]
+   }
+  },
+  {
+   "src": "P05",
+   "type": "INTRODUCES",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "EVALUATES_ON",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "USES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "USES",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-icrr",
+   "props": {}
+  },
+  {
+   "src": "auth-fischer",
+   "type": "WROTE",
+   "dst": "P06",
+   "props": {
+    "position": 1,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "auth-mehta",
+   "type": "WROTE",
+   "dst": "P06",
+   "props": {
+    "position": 2,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "WROTE",
+   "dst": "P06",
+   "props": {
+    "position": 3,
+    "affiliation": "Bay of Bengal Institute of Technology"
+   }
+  },
+  {
+   "src": "P06",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "background",
+    "ref_no": 1,
+    "contexts": [
+     "Iterative dense retrieval [1] remains the backbone of many systems."
+    ]
+   }
+  },
+  {
+   "src": "P06",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "extends",
+    "ref_no": 2,
+    "contexts": [
+     "HopRank [3] is strongest on short chains, while GraphWalker-QA [2] is strongest on long chains.",
+     "GraphFuse extends GraphWalker-QA [2] and HopRank [3]."
+    ]
+   }
+  },
+  {
+   "src": "P06",
+   "type": "CITES",
+   "dst": "P04",
+   "props": {
+    "intent": "extends",
+    "ref_no": 3,
+    "contexts": [
+     "HopRank [3] is strongest on short chains, while GraphWalker-QA [2] is strongest on long chains.",
+     "GraphFuse extends GraphWalker-QA [2] and HopRank [3]."
+    ]
+   }
+  },
+  {
+   "src": "P06",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 4,
+    "contexts": [
+     "We evaluate on KaveriHop [4] and TriHop-Bench [5]."
+    ]
+   }
+  },
+  {
+   "src": "P06",
+   "type": "CITES",
+   "dst": "P05",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 5,
+    "contexts": [
+     "We evaluate on KaveriHop [4] and TriHop-Bench [5]."
+    ]
+   }
+  },
+  {
+   "src": "P06",
+   "type": "PROPOSES",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "EVALUATES_ON",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "USES",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-loresnlp",
+   "props": {}
+  },
+  {
+   "src": "auth-raman",
+   "type": "WROTE",
+   "dst": "P07",
+   "props": {
+    "position": 1,
+    "affiliation": "Vaigai Institute of Language Technology"
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "WROTE",
+   "dst": "P07",
+   "props": {
+    "position": 2,
+    "affiliation": "Bay of Bengal Institute of Technology"
+   }
+  },
+  {
+   "src": "auth-selvam",
+   "type": "WROTE",
+   "dst": "P07",
+   "props": {
+    "position": 3,
+    "affiliation": "Vaigai Institute of Language Technology"
+   }
+  },
+  {
+   "src": "P07",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "background",
+    "ref_no": 1,
+    "contexts": [
+     "Multi-hop QA research has focused on English benchmarks such as KaveriHop [1]."
+    ]
+   }
+  },
+  {
+   "src": "P07",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 2,
+    "contexts": [
+     "We train Dense-Hop [2] with multilingual encoders and run GraphWalker-QA [3] with entity links predicted by LinkLite [4], the only openly available Tamil entity linker."
+    ]
+   }
+  },
+  {
+   "src": "P07",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 3,
+    "contexts": [
+     "We train Dense-Hop [2] with multilingual encoders and run GraphWalker-QA [3] with entity links predicted by LinkLite [4], the only openly available Tamil entity linker."
+    ]
+   }
+  },
+  {
+   "src": "P07",
+   "type": "CITES",
+   "dst": "ext-brown2019",
+   "props": {
+    "intent": "uses_method",
+    "ref_no": 4,
+    "contexts": [
+     "We train Dense-Hop [2] with multilingual encoders and run GraphWalker-QA [3] with entity links predicted by LinkLite [4], the only openly available Tamil entity linker."
+    ]
+   }
+  },
+  {
+   "src": "P07",
+   "type": "INTRODUCES",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "EVALUATES_ON",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "USES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "USES",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-jals",
+   "props": {}
+  },
+  {
+   "src": "auth-okafor",
+   "type": "WROTE",
+   "dst": "P08",
+   "props": {
+    "position": 1,
+    "affiliation": "Lagoon City University"
+   }
+  },
+  {
+   "src": "auth-zhang",
+   "type": "WROTE",
+   "dst": "P08",
+   "props": {
+    "position": 2,
+    "affiliation": "Instituto Altamira"
+   }
+  },
+  {
+   "src": "auth-weber",
+   "type": "WROTE",
+   "dst": "P08",
+   "props": {
+    "position": 3,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "P08",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "reproduces",
+    "ref_no": 1,
+    "contexts": [
+     "GraphWalker-QA [1] reported that walking an entity graph helps most on 3-hop questions."
+    ]
+   }
+  },
+  {
+   "src": "P08",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 2,
+    "contexts": [
+     "KaveriHop [2] provides gold bridge-entity annotations and asks that they not be used at test time."
+    ]
+   }
+  },
+  {
+   "src": "P08",
+   "type": "CITES",
+   "dst": "P04",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 3,
+    "contexts": [
+     "We also re-run HopRank [3] as a dense baseline."
+    ]
+   }
+  },
+  {
+   "src": "P08",
+   "type": "CITES",
+   "dst": "ext-brown2019",
+   "props": {
+    "intent": "uses_method",
+    "ref_no": 4,
+    "contexts": [
+     "We use the released GraphWalker-QA code and run it twice: with gold links, as in the original paper, and with links predicted by LinkLite [4]."
+    ]
+   }
+  },
+  {
+   "src": "P08",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "USES",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "USES",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "P09",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-icrr",
+   "props": {}
+  },
+  {
+   "src": "auth-fischer",
+   "type": "WROTE",
+   "dst": "P09",
+   "props": {
+    "position": 1,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "auth-mehta",
+   "type": "WROTE",
+   "dst": "P09",
+   "props": {
+    "position": 2,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "WROTE",
+   "dst": "P09",
+   "props": {
+    "position": 3,
+    "affiliation": "Bay of Bengal Institute of Technology"
+   }
+  },
+  {
+   "src": "P09",
+   "type": "CITES",
+   "dst": "P06",
+   "props": {
+    "intent": "corrects",
+    "ref_no": 1,
+    "contexts": [
+     "Re-running with consistent normalisation on TriHop-Bench [2] lowers the 4-hop score of GraphFuse [1]."
+    ]
+   }
+  },
+  {
+   "src": "P09",
+   "type": "CITES",
+   "dst": "P05",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 2,
+    "contexts": [
+     "Re-running with consistent normalisation on TriHop-Bench [2] lowers the 4-hop score of GraphFuse [1]."
+    ]
+   }
+  },
+  {
+   "src": "P09",
+   "type": "EVALUATES_ON",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "P09",
+   "type": "USES",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-loresnlp",
+   "props": {}
+  },
+  {
+   "src": "auth-selvam",
+   "type": "WROTE",
+   "dst": "P10",
+   "props": {
+    "position": 1,
+    "affiliation": "Vaigai Institute of Language Technology"
+   }
+  },
+  {
+   "src": "auth-raman",
+   "type": "WROTE",
+   "dst": "P10",
+   "props": {
+    "position": 2,
+    "affiliation": "Vaigai Institute of Language Technology"
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "WROTE",
+   "dst": "P10",
+   "props": {
+    "position": 3,
+    "affiliation": "Rhinebrook Technical University"
+   }
+  },
+  {
+   "src": "P10",
+   "type": "CITES",
+   "dst": "P06",
+   "props": {
+    "intent": "extends",
+    "ref_no": 1,
+    "contexts": [
+     "GraphFuse [1] fused dense and graph retrieval, reaching 46.3 EM on 3-hop KaveriHop and 22.7 EM on 4-hop TriHop-Bench, at roughly twice the cost of a single retriever.",
+     "LiteGraphFuse extends GraphFuse [1]: a GraphFuse teacher labels 200,000 candidate chains and a 3B student learns to reproduce the fusion scores."
+    ]
+   }
+  },
+  {
+   "src": "P10",
+   "type": "CITES",
+   "dst": "P07",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 2,
+    "contexts": [
+     "Earlier work on Tamil [2] found graph retrieval alone unhelpful.",
+     "We evaluate on KaveriHop [3] and VaigaiQA [2], and measure latency for GraphFuse and LiteGraphFuse on the same GPU."
+    ]
+   }
+  },
+  {
+   "src": "P10",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 3,
+    "contexts": [
+     "We evaluate on KaveriHop [3] and VaigaiQA [2], and measure latency for GraphFuse and LiteGraphFuse on the same GPU."
+    ]
+   }
+  },
+  {
+   "src": "P10",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 4,
+    "contexts": [
+     "Dense-Hop [4] and GraphWalker-QA [5] numbers on VaigaiQA are quoted from the VaigaiQA paper."
+    ]
+   }
+  },
+  {
+   "src": "P10",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 5,
+    "contexts": [
+     "Dense-Hop [4] and GraphWalker-QA [5] numbers on VaigaiQA are quoted from the VaigaiQA paper."
+    ]
+   }
+  },
+  {
+   "src": "P10",
+   "type": "PROPOSES",
+   "dst": "m-litegraphfuse",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "EVALUATES_ON",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "USES",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "USES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P11",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-loresnlp",
+   "props": {}
+  },
+  {
+   "src": "auth-das",
+   "type": "WROTE",
+   "dst": "P11",
+   "props": {
+    "position": 1,
+    "affiliation": "Bay of Bengal Institute of Technology"
+   }
+  },
+  {
+   "src": "auth-raman",
+   "type": "WROTE",
+   "dst": "P11",
+   "props": {
+    "position": 2,
+    "affiliation": "Vaigai Institute of Language Technology"
+   }
+  },
+  {
+   "src": "P11",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "background",
+    "ref_no": 1,
+    "contexts": [
+     "GraphWalker-QA [1] connects passages through linked entities, so every linking error removes or corrupts an edge."
+    ]
+   }
+  },
+  {
+   "src": "P11",
+   "type": "CITES",
+   "dst": "P08",
+   "props": {
+    "intent": "supports",
+    "ref_no": 2,
+    "contexts": [
+     "The reproduction study [2] and the VaigaiQA paper [3] both observed weaker graph retrieval under realistic linking, and our analysis supports both findings."
+    ]
+   }
+  },
+  {
+   "src": "P11",
+   "type": "CITES",
+   "dst": "P07",
+   "props": {
+    "intent": "supports",
+    "ref_no": 3,
+    "contexts": [
+     "The reproduction study [2] and the VaigaiQA paper [3] both observed weaker graph retrieval under realistic linking, and our analysis supports both findings."
+    ]
+   }
+  },
+  {
+   "src": "P11",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 4,
+    "contexts": [
+     "We sample 300 failures from KaveriHop [4] with LinkLite [5] links and 300 from VaigaiQA, and label the first incorrect step of each retrieval chain."
+    ]
+   }
+  },
+  {
+   "src": "P11",
+   "type": "CITES",
+   "dst": "ext-brown2019",
+   "props": {
+    "intent": "uses_method",
+    "ref_no": 5,
+    "contexts": [
+     "We sample 300 failures from KaveriHop [4] with LinkLite [5] links and 300 from VaigaiQA, and label the first incorrect step of each retrieval chain."
+    ]
+   }
+  },
+  {
+   "src": "P11",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P11",
+   "type": "EVALUATES_ON",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "P11",
+   "type": "USES",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "P11",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "PUBLISHED_IN",
+   "dst": "venue-openprints",
+   "props": {}
+  },
+  {
+   "src": "auth-kobayashi",
+   "type": "WROTE",
+   "dst": "P12",
+   "props": {
+    "position": 1,
+    "affiliation": "Northern Isles University"
+   }
+  },
+  {
+   "src": "auth-rossi",
+   "type": "WROTE",
+   "dst": "P12",
+   "props": {
+    "position": 2,
+    "affiliation": "Northern Isles University"
+   }
+  },
+  {
+   "src": "P12",
+   "type": "CITES",
+   "dst": "P01",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 1,
+    "contexts": [
+     "Dense multi-hop retrievers such as DenseHop [1] and graph walkers such as GraphWalker-QA [2] produce chains without explanation.",
+     "We evaluate on KaveriHop [3] and TriHop-Bench [4], comparing with DenseHop [1] and GraphWalker-QA [2] using published numbers."
+    ]
+   }
+  },
+  {
+   "src": "P12",
+   "type": "CITES",
+   "dst": "P03",
+   "props": {
+    "intent": "compares_against",
+    "ref_no": 2,
+    "contexts": [
+     "Dense multi-hop retrievers such as DenseHop [1] and graph walkers such as GraphWalker-QA [2] produce chains without explanation.",
+     "We evaluate on KaveriHop [3] and TriHop-Bench [4], comparing with DenseHop [1] and GraphWalker-QA [2] using published numbers."
+    ]
+   }
+  },
+  {
+   "src": "P12",
+   "type": "CITES",
+   "dst": "P02",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 3,
+    "contexts": [
+     "We evaluate on KaveriHop [3] and TriHop-Bench [4], comparing with DenseHop [1] and GraphWalker-QA [2] using published numbers."
+    ]
+   }
+  },
+  {
+   "src": "P12",
+   "type": "CITES",
+   "dst": "P05",
+   "props": {
+    "intent": "uses_dataset",
+    "ref_no": 4,
+    "contexts": [
+     "We evaluate on KaveriHop [3] and TriHop-Bench [4], comparing with DenseHop [1] and GraphWalker-QA [2] using published numbers."
+    ]
+   }
+  },
+  {
+   "src": "P12",
+   "type": "CITES",
+   "dst": "ext-dpr2020",
+   "props": {
+    "intent": "background",
+    "ref_no": 5,
+    "contexts": [
+     "HopLens retrieves 50 candidate chains with a dense retriever initialised from dense passage retrieval [5], then applies path-aware reranking: a cross-encoder scores each transition between consecutive passages, and the chain score is a weighted sum of transition scores."
+    ]
+   }
+  },
+  {
+   "src": "P12",
+   "type": "PROPOSES",
+   "dst": "m-hoplens",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "EVALUATES_ON",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "EVALUATES_ON",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "USES",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "USES",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "auth-iyer",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-coromandel",
+   "props": {
+    "first_year": 2021,
+    "last_year": 2023
+   }
+  },
+  {
+   "src": "auth-mehta",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-coromandel",
+   "props": {
+    "first_year": 2021,
+    "last_year": 2023
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-rhinebrook",
+   "props": {
+    "first_year": 2021,
+    "last_year": 2025
+   }
+  },
+  {
+   "src": "auth-sundaram",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-coromandel",
+   "props": {
+    "first_year": 2022,
+    "last_year": 2023
+   }
+  },
+  {
+   "src": "auth-ruiz",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-altamira",
+   "props": {
+    "first_year": 2022,
+    "last_year": 2023
+   }
+  },
+  {
+   "src": "auth-weber",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-rhinebrook",
+   "props": {
+    "first_year": 2022,
+    "last_year": 2024
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-bbit",
+   "props": {
+    "first_year": 2022,
+    "last_year": 2025
+   }
+  },
+  {
+   "src": "auth-okafor",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-lagoon",
+   "props": {
+    "first_year": 2023,
+    "last_year": 2024
+   }
+  },
+  {
+   "src": "auth-zhang",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-altamira",
+   "props": {
+    "first_year": 2023,
+    "last_year": 2024
+   }
+  },
+  {
+   "src": "auth-mehta",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-rhinebrook",
+   "props": {
+    "first_year": 2024,
+    "last_year": 2025
+   }
+  },
+  {
+   "src": "auth-raman",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-vaigai",
+   "props": {
+    "first_year": 2024,
+    "last_year": 2025
+   }
+  },
+  {
+   "src": "auth-selvam",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-vaigai",
+   "props": {
+    "first_year": 2024,
+    "last_year": 2025
+   }
+  },
+  {
+   "src": "auth-kobayashi",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-northern",
+   "props": {
+    "first_year": 2026,
+    "last_year": 2026
+   }
+  },
+  {
+   "src": "auth-rossi",
+   "type": "AFFILIATED_WITH",
+   "dst": "inst-northern",
+   "props": {
+    "first_year": 2026,
+    "last_year": 2026
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "COAUTHOR",
+   "dst": "auth-iyer",
+   "props": {
+    "papers": [
+     "P01"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "COAUTHOR",
+   "dst": "auth-mehta",
+   "props": {
+    "papers": [
+     "P01",
+     "P06",
+     "P09"
+    ],
+    "count": 3
+   }
+  },
+  {
+   "src": "auth-iyer",
+   "type": "COAUTHOR",
+   "dst": "auth-mehta",
+   "props": {
+    "papers": [
+     "P01",
+     "P04"
+    ],
+    "count": 2
+   }
+  },
+  {
+   "src": "auth-iyer",
+   "type": "COAUTHOR",
+   "dst": "auth-ruiz",
+   "props": {
+    "papers": [
+     "P02"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-iyer",
+   "type": "COAUTHOR",
+   "dst": "auth-sundaram",
+   "props": {
+    "papers": [
+     "P02"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-ruiz",
+   "type": "COAUTHOR",
+   "dst": "auth-sundaram",
+   "props": {
+    "papers": [
+     "P02",
+     "P05"
+    ],
+    "count": 2
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "COAUTHOR",
+   "dst": "auth-fischer",
+   "props": {
+    "papers": [
+     "P03",
+     "P06",
+     "P09"
+    ],
+    "count": 3
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "COAUTHOR",
+   "dst": "auth-weber",
+   "props": {
+    "papers": [
+     "P03"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "COAUTHOR",
+   "dst": "auth-weber",
+   "props": {
+    "papers": [
+     "P03"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-iyer",
+   "type": "COAUTHOR",
+   "dst": "auth-okafor",
+   "props": {
+    "papers": [
+     "P04"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-mehta",
+   "type": "COAUTHOR",
+   "dst": "auth-okafor",
+   "props": {
+    "papers": [
+     "P04"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-ruiz",
+   "type": "COAUTHOR",
+   "dst": "auth-zhang",
+   "props": {
+    "papers": [
+     "P05"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-sundaram",
+   "type": "COAUTHOR",
+   "dst": "auth-zhang",
+   "props": {
+    "papers": [
+     "P05"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "COAUTHOR",
+   "dst": "auth-mehta",
+   "props": {
+    "papers": [
+     "P06",
+     "P09"
+    ],
+    "count": 2
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "COAUTHOR",
+   "dst": "auth-raman",
+   "props": {
+    "papers": [
+     "P07",
+     "P11"
+    ],
+    "count": 2
+   }
+  },
+  {
+   "src": "auth-das",
+   "type": "COAUTHOR",
+   "dst": "auth-selvam",
+   "props": {
+    "papers": [
+     "P07"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-raman",
+   "type": "COAUTHOR",
+   "dst": "auth-selvam",
+   "props": {
+    "papers": [
+     "P07",
+     "P10"
+    ],
+    "count": 2
+   }
+  },
+  {
+   "src": "auth-okafor",
+   "type": "COAUTHOR",
+   "dst": "auth-weber",
+   "props": {
+    "papers": [
+     "P08"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-okafor",
+   "type": "COAUTHOR",
+   "dst": "auth-zhang",
+   "props": {
+    "papers": [
+     "P08"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-weber",
+   "type": "COAUTHOR",
+   "dst": "auth-zhang",
+   "props": {
+    "papers": [
+     "P08"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "COAUTHOR",
+   "dst": "auth-raman",
+   "props": {
+    "papers": [
+     "P10"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-fischer",
+   "type": "COAUTHOR",
+   "dst": "auth-selvam",
+   "props": {
+    "papers": [
+     "P10"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "auth-kobayashi",
+   "type": "COAUTHOR",
+   "dst": "auth-rossi",
+   "props": {
+    "papers": [
+     "P12"
+    ],
+    "count": 1
+   }
+  },
+  {
+   "src": "P01",
+   "type": "REPORTS",
+   "dst": "R-P01-01",
+   "props": {}
+  },
+  {
+   "src": "R-P01-01",
+   "type": "OF_METHOD",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "R-P01-01",
+   "type": "ON_DATASET",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "R-P01-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P01-01",
+   "type": "QUOTED_FROM",
+   "dst": "ext-rao2020",
+   "props": {}
+  },
+  {
+   "src": "P01",
+   "type": "REPORTS",
+   "dst": "R-P01-02",
+   "props": {}
+  },
+  {
+   "src": "R-P01-02",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P01-02",
+   "type": "ON_DATASET",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "R-P01-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "REPORTS",
+   "dst": "R-P02-01",
+   "props": {}
+  },
+  {
+   "src": "R-P02-01",
+   "type": "OF_METHOD",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "R-P02-01",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P02-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "REPORTS",
+   "dst": "R-P02-02",
+   "props": {}
+  },
+  {
+   "src": "R-P02-02",
+   "type": "OF_METHOD",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "R-P02-02",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P02-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "REPORTS",
+   "dst": "R-P02-03",
+   "props": {}
+  },
+  {
+   "src": "R-P02-03",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P02-03",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P02-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "REPORTS",
+   "dst": "R-P02-04",
+   "props": {}
+  },
+  {
+   "src": "R-P02-04",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P02-04",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P02-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "REPORTS",
+   "dst": "R-P03-01",
+   "props": {}
+  },
+  {
+   "src": "R-P03-01",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P03-01",
+   "type": "ON_DATASET",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "R-P03-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P03-01",
+   "type": "QUOTED_FROM",
+   "dst": "P01",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "REPORTS",
+   "dst": "R-P03-02",
+   "props": {}
+  },
+  {
+   "src": "R-P03-02",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P03-02",
+   "type": "ON_DATASET",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "R-P03-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "REPORTS",
+   "dst": "R-P03-03",
+   "props": {}
+  },
+  {
+   "src": "R-P03-03",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P03-03",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P03-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "REPORTS",
+   "dst": "R-P03-04",
+   "props": {}
+  },
+  {
+   "src": "R-P03-04",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P03-04",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P03-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "REPORTS",
+   "dst": "R-P03-05",
+   "props": {}
+  },
+  {
+   "src": "R-P03-05",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P03-05",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P03-05",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "REPORTS",
+   "dst": "R-P03-06",
+   "props": {}
+  },
+  {
+   "src": "R-P03-06",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P03-06",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P03-06",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-01",
+   "props": {}
+  },
+  {
+   "src": "R-P04-01",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P04-01",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P04-01",
+   "type": "QUOTED_FROM",
+   "dst": "P02",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-02",
+   "props": {}
+  },
+  {
+   "src": "R-P04-02",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P04-02",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P04-02",
+   "type": "QUOTED_FROM",
+   "dst": "P02",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-03",
+   "props": {}
+  },
+  {
+   "src": "R-P04-03",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P04-03",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-latency",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-04",
+   "props": {}
+  },
+  {
+   "src": "R-P04-04",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P04-04",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P04-04",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-05",
+   "props": {}
+  },
+  {
+   "src": "R-P04-05",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P04-05",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-05",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P04-05",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-06",
+   "props": {}
+  },
+  {
+   "src": "R-P04-06",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P04-06",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-06",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-07",
+   "props": {}
+  },
+  {
+   "src": "R-P04-07",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P04-07",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-07",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "REPORTS",
+   "dst": "R-P04-08",
+   "props": {}
+  },
+  {
+   "src": "R-P04-08",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P04-08",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P04-08",
+   "type": "MEASURED_BY",
+   "dst": "metric-latency",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "REPORTS",
+   "dst": "R-P05-01",
+   "props": {}
+  },
+  {
+   "src": "R-P05-01",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-01",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "REPORTS",
+   "dst": "R-P05-02",
+   "props": {}
+  },
+  {
+   "src": "R-P05-02",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-02",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "REPORTS",
+   "dst": "R-P05-03",
+   "props": {}
+  },
+  {
+   "src": "R-P05-03",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P05-03",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "REPORTS",
+   "dst": "R-P05-04",
+   "props": {}
+  },
+  {
+   "src": "R-P05-04",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P05-04",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "REPORTS",
+   "dst": "R-P05-05",
+   "props": {}
+  },
+  {
+   "src": "R-P05-05",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P05-05",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-05",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "REPORTS",
+   "dst": "R-P05-06",
+   "props": {}
+  },
+  {
+   "src": "R-P05-06",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P05-06",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P05-06",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-01",
+   "props": {}
+  },
+  {
+   "src": "R-P06-01",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P06-01",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P06-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-01",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-02",
+   "props": {}
+  },
+  {
+   "src": "R-P06-02",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P06-02",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P06-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-02",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-03",
+   "props": {}
+  },
+  {
+   "src": "R-P06-03",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P06-03",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P06-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-03",
+   "type": "QUOTED_FROM",
+   "dst": "P05",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-04",
+   "props": {}
+  },
+  {
+   "src": "R-P06-04",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P06-04",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P06-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-04",
+   "type": "QUOTED_FROM",
+   "dst": "P05",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-05",
+   "props": {}
+  },
+  {
+   "src": "R-P06-05",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P06-05",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P06-05",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-05",
+   "type": "QUOTED_FROM",
+   "dst": "P04",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-06",
+   "props": {}
+  },
+  {
+   "src": "R-P06-06",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P06-06",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P06-06",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-06",
+   "type": "QUOTED_FROM",
+   "dst": "P04",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-07",
+   "props": {}
+  },
+  {
+   "src": "R-P06-07",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P06-07",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P06-07",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-07",
+   "type": "QUOTED_FROM",
+   "dst": "P05",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-08",
+   "props": {}
+  },
+  {
+   "src": "R-P06-08",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P06-08",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P06-08",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P06-08",
+   "type": "QUOTED_FROM",
+   "dst": "P05",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-09",
+   "props": {}
+  },
+  {
+   "src": "R-P06-09",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P06-09",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P06-09",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-10",
+   "props": {}
+  },
+  {
+   "src": "R-P06-10",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P06-10",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P06-10",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-11",
+   "props": {}
+  },
+  {
+   "src": "R-P06-11",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P06-11",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P06-11",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "REPORTS",
+   "dst": "R-P06-12",
+   "props": {}
+  },
+  {
+   "src": "R-P06-12",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P06-12",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P06-12",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "REPORTS",
+   "dst": "R-P07-01",
+   "props": {}
+  },
+  {
+   "src": "R-P07-01",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P07-01",
+   "type": "ON_DATASET",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "R-P07-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "REPORTS",
+   "dst": "R-P07-02",
+   "props": {}
+  },
+  {
+   "src": "R-P07-02",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P07-02",
+   "type": "ON_DATASET",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "R-P07-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "REPORTS",
+   "dst": "R-P07-03",
+   "props": {}
+  },
+  {
+   "src": "R-P07-03",
+   "type": "OF_METHOD",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "R-P07-03",
+   "type": "ON_DATASET",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "R-P07-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-el-acc",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-01",
+   "props": {}
+  },
+  {
+   "src": "R-P08-01",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P08-01",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P08-01",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-02",
+   "props": {}
+  },
+  {
+   "src": "R-P08-02",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P08-02",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P08-02",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-03",
+   "props": {}
+  },
+  {
+   "src": "R-P08-03",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P08-03",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-04",
+   "props": {}
+  },
+  {
+   "src": "R-P08-04",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P08-04",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-05",
+   "props": {}
+  },
+  {
+   "src": "R-P08-05",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P08-05",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-05",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-06",
+   "props": {}
+  },
+  {
+   "src": "R-P08-06",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P08-06",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-06",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-07",
+   "props": {}
+  },
+  {
+   "src": "R-P08-07",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P08-07",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-07",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "REPORTS",
+   "dst": "R-P08-08",
+   "props": {}
+  },
+  {
+   "src": "R-P08-08",
+   "type": "OF_METHOD",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "R-P08-08",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P08-08",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P09",
+   "type": "REPORTS",
+   "dst": "R-P09-01",
+   "props": {}
+  },
+  {
+   "src": "R-P09-01",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P09-01",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P09-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P09-01",
+   "type": "QUOTED_FROM",
+   "dst": "P06",
+   "props": {}
+  },
+  {
+   "src": "P09",
+   "type": "REPORTS",
+   "dst": "R-P09-02",
+   "props": {}
+  },
+  {
+   "src": "R-P09-02",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P09-02",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P09-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-01",
+   "props": {}
+  },
+  {
+   "src": "R-P10-01",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P10-01",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P10-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P10-01",
+   "type": "QUOTED_FROM",
+   "dst": "P06",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-02",
+   "props": {}
+  },
+  {
+   "src": "R-P10-02",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P10-02",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P10-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P10-02",
+   "type": "QUOTED_FROM",
+   "dst": "P06",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-03",
+   "props": {}
+  },
+  {
+   "src": "R-P10-03",
+   "type": "OF_METHOD",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P10-03",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P10-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-latency",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-04",
+   "props": {}
+  },
+  {
+   "src": "R-P10-04",
+   "type": "OF_METHOD",
+   "dst": "m-litegraphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P10-04",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P10-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-05",
+   "props": {}
+  },
+  {
+   "src": "R-P10-05",
+   "type": "OF_METHOD",
+   "dst": "m-litegraphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P10-05",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P10-05",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-06",
+   "props": {}
+  },
+  {
+   "src": "R-P10-06",
+   "type": "OF_METHOD",
+   "dst": "m-litegraphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P10-06",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P10-06",
+   "type": "MEASURED_BY",
+   "dst": "metric-latency",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-07",
+   "props": {}
+  },
+  {
+   "src": "R-P10-07",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P10-07",
+   "type": "ON_DATASET",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "R-P10-07",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P10-07",
+   "type": "QUOTED_FROM",
+   "dst": "P07",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-08",
+   "props": {}
+  },
+  {
+   "src": "R-P10-08",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P10-08",
+   "type": "ON_DATASET",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "R-P10-08",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P10-08",
+   "type": "QUOTED_FROM",
+   "dst": "P07",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "REPORTS",
+   "dst": "R-P10-09",
+   "props": {}
+  },
+  {
+   "src": "R-P10-09",
+   "type": "OF_METHOD",
+   "dst": "m-litegraphfuse",
+   "props": {}
+  },
+  {
+   "src": "R-P10-09",
+   "type": "ON_DATASET",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "R-P10-09",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P11",
+   "type": "REPORTS",
+   "dst": "R-P11-01",
+   "props": {}
+  },
+  {
+   "src": "R-P11-01",
+   "type": "OF_METHOD",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "R-P11-01",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P11-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-el-acc",
+   "props": {}
+  },
+  {
+   "src": "P11",
+   "type": "REPORTS",
+   "dst": "R-P11-02",
+   "props": {}
+  },
+  {
+   "src": "R-P11-02",
+   "type": "OF_METHOD",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "R-P11-02",
+   "type": "ON_DATASET",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "R-P11-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-el-acc",
+   "props": {}
+  },
+  {
+   "src": "R-P11-02",
+   "type": "QUOTED_FROM",
+   "dst": "P07",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-01",
+   "props": {}
+  },
+  {
+   "src": "R-P12-01",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P12-01",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P12-01",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P12-01",
+   "type": "QUOTED_FROM",
+   "dst": "P02",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-02",
+   "props": {}
+  },
+  {
+   "src": "R-P12-02",
+   "type": "OF_METHOD",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "R-P12-02",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P12-02",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P12-02",
+   "type": "QUOTED_FROM",
+   "dst": "P02",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-03",
+   "props": {}
+  },
+  {
+   "src": "R-P12-03",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P12-03",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P12-03",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P12-03",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-04",
+   "props": {}
+  },
+  {
+   "src": "R-P12-04",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P12-04",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P12-04",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P12-04",
+   "type": "QUOTED_FROM",
+   "dst": "P03",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-05",
+   "props": {}
+  },
+  {
+   "src": "R-P12-05",
+   "type": "OF_METHOD",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "R-P12-05",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P12-05",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "R-P12-05",
+   "type": "QUOTED_FROM",
+   "dst": "P05",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-06",
+   "props": {}
+  },
+  {
+   "src": "R-P12-06",
+   "type": "OF_METHOD",
+   "dst": "m-hoplens",
+   "props": {}
+  },
+  {
+   "src": "R-P12-06",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P12-06",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-07",
+   "props": {}
+  },
+  {
+   "src": "R-P12-07",
+   "type": "OF_METHOD",
+   "dst": "m-hoplens",
+   "props": {}
+  },
+  {
+   "src": "R-P12-07",
+   "type": "ON_DATASET",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "R-P12-07",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "REPORTS",
+   "dst": "R-P12-08",
+   "props": {}
+  },
+  {
+   "src": "R-P12-08",
+   "type": "OF_METHOD",
+   "dst": "m-hoplens",
+   "props": {}
+  },
+  {
+   "src": "R-P12-08",
+   "type": "ON_DATASET",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "R-P12-08",
+   "type": "MEASURED_BY",
+   "dst": "metric-em",
+   "props": {}
+  },
+  {
+   "src": "P09",
+   "type": "CORRECTS",
+   "dst": "P06",
+   "props": {}
+  },
+  {
+   "src": "R-P09-02",
+   "type": "CORRECTS",
+   "dst": "R-P06-12",
+   "props": {
+    "reason": "evaluation script bug (answer normalisation)"
+   }
+  },
+  {
+   "src": "R-P08-03",
+   "type": "REPRODUCES",
+   "dst": "R-P03-05",
+   "props": {
+    "setting": "gold entity links"
+   }
+  },
+  {
+   "src": "R-P08-05",
+   "type": "REPRODUCES",
+   "dst": "R-P03-05",
+   "props": {
+    "setting": "LinkLite predicted entity links"
+   }
+  },
+  {
+   "src": "R-P08-07",
+   "type": "REPRODUCES",
+   "dst": "R-P04-06",
+   "props": {
+    "setting": "not reported"
+   }
+  },
+  {
+   "src": "R-P08-04",
+   "type": "REPRODUCES",
+   "dst": "R-P03-06",
+   "props": {
+    "setting": "gold entity links"
+   }
+  },
+  {
+   "src": "R-P08-06",
+   "type": "REPRODUCES",
+   "dst": "R-P03-06",
+   "props": {
+    "setting": "LinkLite predicted entity links"
+   }
+  },
+  {
+   "src": "R-P08-08",
+   "type": "REPRODUCES",
+   "dst": "R-P04-07",
+   "props": {
+    "setting": "not reported"
+   }
+  },
+  {
+   "src": "P01",
+   "type": "MAKES",
+   "dst": "C01",
+   "props": {}
+  },
+  {
+   "src": "C01",
+   "type": "ABOUT",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "C01",
+   "type": "ABOUT",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "C01",
+   "type": "ABOUT",
+   "dst": "ds-narmada",
+   "props": {}
+  },
+  {
+   "src": "P02",
+   "type": "MAKES",
+   "dst": "C02",
+   "props": {}
+  },
+  {
+   "src": "C02",
+   "type": "ABOUT",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "C02",
+   "type": "ABOUT",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "C02",
+   "type": "ABOUT",
+   "dst": "m-chaintfidf",
+   "props": {}
+  },
+  {
+   "src": "P03",
+   "type": "MAKES",
+   "dst": "C03",
+   "props": {}
+  },
+  {
+   "src": "C03",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C03",
+   "type": "ABOUT",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "C03",
+   "type": "ABOUT",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P04",
+   "type": "MAKES",
+   "dst": "C04",
+   "props": {}
+  },
+  {
+   "src": "C04",
+   "type": "ABOUT",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "C04",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C04",
+   "type": "ABOUT",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P05",
+   "type": "MAKES",
+   "dst": "C05",
+   "props": {}
+  },
+  {
+   "src": "C05",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C05",
+   "type": "ABOUT",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "C05",
+   "type": "ABOUT",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "P06",
+   "type": "MAKES",
+   "dst": "C06",
+   "props": {}
+  },
+  {
+   "src": "C06",
+   "type": "ABOUT",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "C06",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C06",
+   "type": "ABOUT",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "P07",
+   "type": "MAKES",
+   "dst": "C07",
+   "props": {}
+  },
+  {
+   "src": "C07",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C07",
+   "type": "ABOUT",
+   "dst": "m-densehop",
+   "props": {}
+  },
+  {
+   "src": "C07",
+   "type": "ABOUT",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "C07",
+   "type": "ABOUT",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "P08",
+   "type": "MAKES",
+   "dst": "C08",
+   "props": {}
+  },
+  {
+   "src": "C08",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C08",
+   "type": "ABOUT",
+   "dst": "m-hoprank",
+   "props": {}
+  },
+  {
+   "src": "C08",
+   "type": "ABOUT",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "C08",
+   "type": "ABOUT",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "P09",
+   "type": "MAKES",
+   "dst": "C09",
+   "props": {}
+  },
+  {
+   "src": "C09",
+   "type": "ABOUT",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "C09",
+   "type": "ABOUT",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "MAKES",
+   "dst": "C10",
+   "props": {}
+  },
+  {
+   "src": "C10",
+   "type": "ABOUT",
+   "dst": "m-litegraphfuse",
+   "props": {}
+  },
+  {
+   "src": "C10",
+   "type": "ABOUT",
+   "dst": "m-graphfuse",
+   "props": {}
+  },
+  {
+   "src": "C10",
+   "type": "ABOUT",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P10",
+   "type": "MAKES",
+   "dst": "C10b",
+   "props": {}
+  },
+  {
+   "src": "C10b",
+   "type": "ABOUT",
+   "dst": "m-litegraphfuse",
+   "props": {}
+  },
+  {
+   "src": "C10b",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C10b",
+   "type": "ABOUT",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "P11",
+   "type": "MAKES",
+   "dst": "C11",
+   "props": {}
+  },
+  {
+   "src": "C11",
+   "type": "ABOUT",
+   "dst": "m-linklite",
+   "props": {}
+  },
+  {
+   "src": "C11",
+   "type": "ABOUT",
+   "dst": "m-graphwalker",
+   "props": {}
+  },
+  {
+   "src": "C11",
+   "type": "ABOUT",
+   "dst": "ds-vaigai",
+   "props": {}
+  },
+  {
+   "src": "C11",
+   "type": "ABOUT",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "P12",
+   "type": "MAKES",
+   "dst": "C12",
+   "props": {}
+  },
+  {
+   "src": "C12",
+   "type": "ABOUT",
+   "dst": "m-hoplens",
+   "props": {}
+  },
+  {
+   "src": "C12",
+   "type": "ABOUT",
+   "dst": "ds-kaveri",
+   "props": {}
+  },
+  {
+   "src": "C12",
+   "type": "ABOUT",
+   "dst": "ds-trihop",
+   "props": {}
+  },
+  {
+   "src": "C05",
+   "type": "SUPPORTS",
+   "dst": "C03",
+   "props": {
+    "basis": "TriHop-Bench shows the graph advantage growing with hops, as GraphWalker-QA reported on KaveriHop"
+   }
+  },
+  {
+   "src": "C04",
+   "type": "SUPPORTS",
+   "dst": "C03",
+   "props": {
+    "basis": "Dense reranking catches up on 2-hop but not 3-hop, consistent with larger graph gains at 3 hops"
+   }
+  },
+  {
+   "src": "C08",
+   "type": "CONTRADICTS",
+   "dst": "C03",
+   "props": {
+    "basis": "Same dataset: the 3-hop gain disappears when gold entity links are replaced by predicted links"
+   }
+  },
+  {
+   "src": "C07",
+   "type": "QUALIFIES",
+   "dst": "C03",
+   "props": {
+    "basis": "In Tamil the graph method trails the dense method; the reported gains hold for English only"
+   }
+  },
+  {
+   "src": "C07",
+   "type": "QUALIFIES",
+   "dst": "C05",
+   "props": {
+    "basis": "The growing graph advantage was measured in English; in Tamil graph retrieval is worse"
+   }
+  },
+  {
+   "src": "C11",
+   "type": "SUPPORTS",
+   "dst": "C07",
+   "props": {
+    "basis": "Error analysis attributes the Tamil drop to entity-linking errors"
+   }
+  },
+  {
+   "src": "C11",
+   "type": "SUPPORTS",
+   "dst": "C08",
+   "props": {
+    "basis": "Error analysis attributes the reproduction gap to entity-linking errors"
+   }
+  },
+  {
+   "src": "C09",
+   "type": "SUPPORTS",
+   "dst": "C06",
+   "props": {
+    "basis": "After correction GraphFuse 4-hop (19.4) still beats GW-QA (17.5) and HopRank (11.2)"
+   }
+  },
+  {
+   "src": "C10b",
+   "type": "QUALIFIES",
+   "dst": "C07",
+   "props": {
+    "basis": "Graph signals still help in Tamil when fused with dense retrieval"
+   }
+  },
+  {
+   "src": "C12",
+   "type": "CONFLICTS_WITH_RESULT",
+   "dst": "R-P06-10",
+   "props": {
+    "basis": "GraphFuse reports 46.3 EM on KaveriHop 3-hop (HopLens: 44.8)"
+   }
+  },
+  {
+   "src": "C12",
+   "type": "CONFLICTS_WITH_RESULT",
+   "dst": "R-P06-11",
+   "props": {
+    "basis": "GraphFuse reports 41.2 EM on TriHop-Bench 3-hop (HopLens: 39.5)"
+   }
+  }
+ ]
+}

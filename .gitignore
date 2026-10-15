@@ -1,0 +1,38 @@
+# ---------- Python ----------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# ---------- Node / frontend ----------
+node_modules/
+dist/
+*.tsbuildinfo
+npm-debug.log*
+
+# ---------- Runtime data (rebuilt from corpus + uploads) ----------
+backend/chroma_data/
+backend/uploads/
+*.db
+
+# ---------- Secrets ----------
+.env
+.env.*
+!.env.example
+
+# ---------- OS ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Editors ----------
+.vscode/
+.idea/
+*.swp
+*~

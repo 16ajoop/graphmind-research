@@ -1,0 +1,13 @@
+falkordb
+chromadb>=1.0
+langgraph>=1.0
+fastapi
+uvicorn[standard]
+sse-starlette
+python-multipart
+pymupdf
+rapidfuzz
+httpx
+pydantic>=2
+python-dotenv
+pytest
