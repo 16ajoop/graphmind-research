@@ -56,6 +56,7 @@ Q = {
         RETURN m.id AS id, m.name AS name, m.aliases AS aliases, p.id AS paper, p.year AS year, p.in_library AS in_library""",
 
     # ---------- results
+    # One dataset/split/metric: every non-quoted result, with an erratum's value swapped in through (fix)-[:CORRECTS]->(r).
     "leaderboard": """
         MATCH (d:Dataset {id: $dataset})<-[:ON_DATASET]-(r:Result)-[:MEASURED_BY]->(mt:Metric {id: $metric}),
               (r)-[:OF_METHOD]->(m:Method), (p:Paper)-[:REPORTS]->(r)
@@ -138,6 +139,7 @@ Q = {
         MATCH (pr)-[:ON_DATASET]->(d:Dataset)<-[:ON_DATASET]-(qr)
         MATCH (pr)-[:MEASURED_BY]->(:Metric {higher_is_better: true})<-[:MEASURED_BY]-(qr)
         RETURN q.id AS paper, collect(DISTINCT qm.name + ' > ' + pm.name + ' on ' + d.name + ' ' + qr.split) AS items""",
+    # Stale citation: a paper cites X, an erratum corrected X before the paper came out, and the paper never cites the erratum.
     "stale_citations": """
         MATCH (p:Paper {in_library: true})-[c:CITES]->(orig:Paper)<-[:CORRECTS]-(err:Paper)
         WHERE p <> err AND p.published > err.published AND NOT (p)-[:CITES]->(err)
@@ -171,13 +173,16 @@ Q = {
         RETURN t.name AS task, collect(DISTINCT m.name) AS external_methods, collect(DISTINCT c.id) AS claims""",
 
     # ---------- people and influence (FalkorDB algorithms)
+    # PageRank over CITES: a paper ranks high when papers that are themselves well cited cite it.
     "influential_papers": """
         CALL algo.pageRank('Paper', 'CITES') YIELD node, score
         RETURN node.id AS id, node.title AS title, node.in_library AS in_library, score ORDER BY score DESC LIMIT $k""",
+    # Betweenness over COAUTHOR (stored both ways). FalkorDB samples betweenness, so the seed is fixed for repeatable rankings.
     "bridge_authors": """
         CALL algo.betweenness({nodeLabels: ['Author'], relationshipTypes: ['COAUTHOR'], samplingSize: 1000, samplingSeed: 7})
         YIELD node, score
         RETURN node.name AS author, score ORDER BY score DESC LIMIT $k""",
+    # Weakly connected components over COAUTHOR: groups of authors with no co-author path between them.
     "author_groups": """
         CALL algo.WCC({nodeLabels: ['Author'], relationshipTypes: ['COAUTHOR']}) YIELD node, componentId
         RETURN componentId, collect(node.name) AS authors ORDER BY size(authors) DESC""",
