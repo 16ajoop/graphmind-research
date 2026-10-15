@@ -27,7 +27,13 @@ def load_gold(graph, path: Path) -> dict:
     for (sl, rel, dl), rows in groups.items():
         graph.query(f"UNWIND $rows AS r MATCH (a:{sl} {{id: r.s}}), (b:{dl} {{id: r.d}}) CREATE (a)-[e:{rel}]->(b) SET e = r.p",
                     {"rows": rows})
-    return {"nodes": len(gold["nodes"]), "edges": len(gold["edges"])}
+    # Co-authorship has no direction, but FalkorDB algorithms (betweenness) follow edge direction.
+    # Store every COAUTHOR edge both ways so algorithms treat it as undirected.
+    added = graph.query("""MATCH (a:Author)-[c:COAUTHOR]->(b:Author)
+                           WHERE NOT (b)-[:COAUTHOR]->(a)
+                           CREATE (b)-[:COAUTHOR {papers: c.papers, count: c.count}]->(a)""").relationships_created
+    added = int(added)
+    return {"nodes": len(gold["nodes"]), "edges": len(gold["edges"]) + added}
 
 
 if __name__ == "__main__":

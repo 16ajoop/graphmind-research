@@ -56,3 +56,8 @@ each change, show the commands you ran. Ask before adding dependencies. If the d
 - After creating it: explain what it does, why it is built that way (with the theory), and give me
   the exact command to verify it. Then stop and wait for my next request.
 - Commit only when I say "commit", using a short conventional message (feat:, chore:, test:, docs:).
+
+## FalkorDB 6.0.1 notes
+- After a WHERE that contains a pattern predicate, add WITH before the next MATCH.
+- Don't chain several OPTIONAL MATCH ... collect() stages; use one query per signal and combine in Python.
+- Algorithms follow edge direction: store undirected relations (COAUTHOR) in both directions.
