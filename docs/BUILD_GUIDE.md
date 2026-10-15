@@ -163,7 +163,7 @@ Everything the product shows — library map, leaderboards, contradictions, cita
 |---|---|
 | `(Author)-[:WROTE {position, affiliation}]->(Paper)` | authorship, with the affiliation printed in that paper |
 | `(Author)-[:AFFILIATED_WITH {first_year, last_year}]->(Institution)` | career history (Rahul Mehta moved in 2024) |
-| `(Author)-[:COAUTHOR {papers, count}]->(Author)` | stored once, smaller id first |
+| `(Author)-[:COAUTHOR {papers, count}]->(Author)` | stored in both directions |
 | `(Paper)-[:PUBLISHED_IN]->(Venue)` | |
 | `(Paper)-[:CITES {intent, ref_no, contexts}]->(Paper)` | **contexts** = the sentences where the citation appears |
 | `(Paper)-[:PROPOSES]->(Method)`, `(Paper)-[:INTRODUCES]->(Dataset)` | contributions |
