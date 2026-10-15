@@ -198,7 +198,7 @@ class Analysis:
     log: list = field(default_factory=list)
 
     def run(self, name, **params):
-        res = self.graph.query(Q[name], params)
+        res = self.graph.ro_query(Q[name], params)   # read-only: never creates or changes a graph
         cols = [c[1] if isinstance(c, (list, tuple)) else c for c in res.header]
         rows = [dict(zip(cols, r)) for r in res.result_set]
         self.log.append({"query": name, "params": params, "rows": len(rows)})
@@ -262,7 +262,7 @@ def _parse_value(raw: str):
 if __name__ == "__main__":
     import sys
 
-    from app.graph.client import graph_for
+    from app.graph.client import UnknownWorkspace, graph_for
 
     usage = "usage: python -m app.graph.analysis <workspace> <query_name> key=value ..."
     if len(sys.argv) < 3:
@@ -277,9 +277,12 @@ if __name__ == "__main__":
             sys.exit(f"bad argument {pair!r}: expected key=value\n{usage}")
         params[key] = _parse_value(raw)
     try:
-        graph = graph_for(workspace)
+        graph = graph_for(workspace, must_exist=True)
     except ValueError as exc:
         sys.exit(str(exc))
+    except UnknownWorkspace as exc:
+        print(exc, file=sys.stderr)
+        sys.exit(2)
     analysis = Analysis(graph)
     if name == "missing_citations":
         rows = analysis.missing_citations(**params)

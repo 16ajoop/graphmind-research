@@ -16,6 +16,10 @@ GRAPH_PREFIX = "ws_"
 _WORKSPACE_RE = re.compile(r"^[a-z0-9_]{1,32}$")
 
 
+class UnknownWorkspace(LookupError):
+    """A read asked for a workspace that has never been created."""
+
+
 @cache
 def get_db() -> FalkorDB:
     """Return the shared FalkorDB client (one connection pool per process)."""
@@ -26,11 +30,18 @@ def get_db() -> FalkorDB:
     )
 
 
-def graph_for(workspace: str) -> Graph:
-    """Return the graph for a workspace, rejecting names outside ^[a-z0-9_]{1,32}$."""
+def graph_for(workspace: str, must_exist: bool = False) -> Graph:
+    """Return the graph for a workspace, rejecting names outside ^[a-z0-9_]{1,32}$.
+
+    With must_exist=True, raise UnknownWorkspace instead of returning a graph that does not exist yet.
+    """
     if not isinstance(workspace, str) or not _WORKSPACE_RE.fullmatch(workspace):
         raise ValueError(f"invalid workspace name: {workspace!r} (allowed: ^[a-z0-9_]{{1,32}}$)")
-    return get_db().select_graph(f"{GRAPH_PREFIX}{workspace}")
+    name = f"{GRAPH_PREFIX}{workspace}"
+    # FalkorDB creates a graph on the first write query against it, so reads must check first.
+    if must_exist and name not in get_db().list_graphs():
+        raise UnknownWorkspace(f"workspace {workspace!r} does not exist; existing: {list_workspaces()}")
+    return get_db().select_graph(name)
 
 
 def list_workspaces() -> list[str]:

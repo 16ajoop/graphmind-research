@@ -61,3 +61,5 @@ each change, show the commands you ran. Ask before adding dependencies. If the d
 - After a WHERE that contains a pattern predicate, add WITH before the next MATCH.
 - Don't chain several OPTIONAL MATCH ... collect() stages; use one query per signal and combine in Python.
 - Algorithms follow edge direction: store undirected relations (COAUTHOR) in both directions.
+- graph.query on a graph that doesn't exist creates it. Read paths use graph.ro_query and
+  graph_for(..., must_exist=True); only ingestion and the gold loader may create graphs.
