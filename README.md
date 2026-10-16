@@ -21,7 +21,8 @@ See [docs/CYPHER.md](docs/CYPHER.md): every named, parameterised query the agent
 `backend/app/graph/analysis.py` (`python -m app.graph.export_cypher`; `--check` fails if it is out of date).
 
 ## Evaluation
-How extraction and answers are scored against ground_truth/, with the latest results.
+See [docs/EVALUATION.md](docs/EVALUATION.md): the extracted graph scored against `ground_truth/gold_graph.json`
+(precision / recall per relationship, citation-intent accuracy), with measured numbers.
 
 ## Local setup
 Needs Docker, Python 3.11+, Node 20+ and Ollama (`llama3.2`, `nomic-embed-text`).
@@ -37,6 +38,10 @@ python -m app.health                       # FalkorDB, Ollama and the Chroma pat
 python -m app.graph.gold_loader --workspace gold
 python -m app.graph.analysis gold leaderboard dataset=ds-kaveri split=3-hop metric=metric-em
 pytest tests/test_analysis.py -q
+python -m app.graph.ingest --workspace demo ../corpus/pdf                          # PDFs -> graph, no LLM
+python -m app.eval_extraction --workspace demo                                     # scorecard vs gold graph
+python -m app.graph.ingest --workspace baseline --keyword-intents ../corpus/pdf    # + keyword intent baseline
+python -m app.eval_extraction --workspace baseline
 
 cd ..\frontend
 npm install
