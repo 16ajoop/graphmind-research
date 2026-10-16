@@ -73,7 +73,10 @@ def upsert_library_paper(graph, p: ParsedPaper) -> str:
     q(graph, """MERGE (x:Paper {id: $id})
                 SET x += $props, x.added_at = coalesce(x.added_at, timestamp())""", id=pid, props={
         "title": p.title, "year": p.year, "published": p.published, "first_author": surname,
-        "abstract": p.abstract, "keywords": p.keywords, "file": Path(p.file).name, "in_library": True})
+        "abstract": p.abstract, "keywords": p.keywords, "file": Path(p.file).name, "in_library": True,
+        # the last section (conclusion / discussion / limitations): with the abstract, where findings are stated
+        "final_section": p.sections[-1]["heading"] if p.sections else "",
+        "final_text": p.sections[-1]["text"] if p.sections else ""})
     if p.venue:
         q(graph, """MATCH (x:Paper {id: $pid})
                     MERGE (v:Venue {id: $vid}) SET v.short = $venue, v.name = coalesce(v.name, $venue)
@@ -300,13 +303,17 @@ def reconcile(graph):
                 WHERE m <> n MERGE (m)-[:EXTENDS]->(n)""")
 
 
-def ingest_pdf(graph, path, ontology) -> str:
+def ingest_pdf(graph, path, ontology, store=None) -> str:
+    """store: an optional DocStore. When given, the paper's abstract and sections are also indexed in ChromaDB,
+    with chunk metadata paper_id equal to the FalkorDB Paper id (one parse feeds both stores)."""
     p = parse_pdf(path)
     pid = upsert_library_paper(graph, p)
     upsert_authors(graph, pid, p)
     ref_ids = link_references(graph, pid, p)
     tables_to_results(graph, pid, p, ref_ids, ontology)
     reconcile(graph)
+    if store is not None:
+        store.add_paper(pid, p.title, p.abstract, p.sections)
     return pid
 
 
@@ -368,6 +375,8 @@ if __name__ == "__main__":
     ap.add_argument("--workspace", required=True, help="workspace name; the graph is ws_<workspace>")
     ap.add_argument("--keyword-intents", action="store_true",
                     help="label citation intents with the keyword baseline (the number the LLM must beat)")
+    ap.add_argument("--index", action="store_true",
+                    help="also index abstracts and sections in ChromaDB (needs Ollama with nomic-embed-text)")
     ap.add_argument("pdfs", nargs="+", help="PDF files, folders or glob patterns")
     args = ap.parse_args()
 
@@ -376,10 +385,17 @@ if __name__ == "__main__":
         raise SystemExit(f"no PDFs matched {args.pdfs}")
     ontology = json.loads((Path(__file__).resolve().parents[3] / "ontology.json").read_text(encoding="utf-8"))
     graph = graph_for(args.workspace)          # ingestion is allowed to create the workspace
+    store = None
+    if args.index:
+        from app.config import settings
+        from app.docs.docstore import DocStore
+        store = DocStore(str(settings.chroma_path), args.workspace)
     for f in files:
         t0 = time.time()
-        pid = ingest_pdf(graph, f, ontology)
+        pid = ingest_pdf(graph, f, ontology, store)
         print(f"{f.name:<40} -> {pid}  ({time.time() - t0:.1f}s)")
+    if store is not None:
+        print(f"ChromaDB: {store.col.count()} chunks in collection {store.col.name}")
     if args.keyword_intents:
         print(f"keyword intents: {apply_keyword_intents(graph)} citations labelled")
     papers = dict(q(graph, "MATCH (p:Paper) RETURN p.in_library, count(p)"))
