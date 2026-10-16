@@ -64,3 +64,4 @@ each change, show the commands you ran. Ask before adding dependencies. If the d
 - graph.query on a graph that doesn't exist creates it. Read paths use graph.ro_query and
   graph_for(..., must_exist=True); only ingestion and the gold loader may create graphs.
 - Dates are stored as YYYY-MM-DD strings; Cypher compares strings character by character.
+- Agents coordinate only through the graph: Job nodes (atomic claim = one write query) and the Lock node (graph_lock). Never add Python-side locks or queues.

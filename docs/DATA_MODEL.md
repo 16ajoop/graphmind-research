@@ -142,6 +142,19 @@ ABOUT, CORRECTS and FOR_TASK each appear twice because they connect two differen
 - **ResearchSession**: one research session of a user.
 - **Question**: a question asked in a session. The answer is stored on it as a JSON string property.
 - **Insight**: a conclusion the user saved, linked to what it is about.
+- **Lock**: a mutex in the graph for steps that rewrite the whole graph (ingest, reconcile, intent labels, sota check).
+  - `name`: which lock (the pipeline uses `graph-write`).
+  - `holder`: name of the agent holding it, or NULL when free.
+  - `acquired_at`: timestamp (ms) when taken; a holder older than 10 minutes is presumed crashed and replaced.
+
+Job properties:
+- `stage`: where the job is: parse, extract, link, critique or done.
+- `status`: ready (waiting for an agent), running (claimed), done, or failed (after 3 attempts).
+- `claimed_by`: name of the agent working on it now (e.g. `extractor-2`), NULL when not running.
+- `attempts`: tries at the current stage; reset to 0 when the job moves on.
+- `history`: list of `agent:stage` entries, one per finished stage, so every hand-off is recorded.
+- `error`: last error message (kept after a successful retry, so the board can show what went wrong).
+- `paper`: id of the Paper the parser created for this PDF (also linked by `FOR_PAPER`).
 
 ## Indexes
 
