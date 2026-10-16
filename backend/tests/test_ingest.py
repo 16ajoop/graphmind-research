@@ -2,6 +2,7 @@
 import json
 import os
 import random
+import re
 from pathlib import Path
 
 import pytest
@@ -21,6 +22,7 @@ def test_parser_reads_every_pdf():
         p = parse_pdf(f)
         assert p.title and p.authors and p.year and p.abstract and p.sections and p.references and p.tables, f.name
         assert all(r["title"] and r["year"] for r in p.references), f.name
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", p.published), (f.name, p.published)   # ISO, so dates compare correctly
 
 
 @pytest.mark.parametrize("seed", [0, 1, 2])

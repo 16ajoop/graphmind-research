@@ -63,3 +63,4 @@ each change, show the commands you ran. Ask before adding dependencies. If the d
 - Algorithms follow edge direction: store undirected relations (COAUTHOR) in both directions.
 - graph.query on a graph that doesn't exist creates it. Read paths use graph.ro_query and
   graph_for(..., must_exist=True); only ingestion and the gold loader may create graphs.
+- Dates are stored as YYYY-MM-DD strings; Cypher compares strings character by character.

@@ -15,6 +15,19 @@ APA_REF = re.compile(r"^(?P<authors>.+?) \((?P<year>(?:19|20)\d{2})\)\. (?P<titl
 VENUE_LINE = re.compile(r"^(?P<venue>.+?) (?P<year>(?:19|20)\d{2}) · Published (?P<date>.+)$")
 AUTHOR_WITH_NO = re.compile(r"\s*(?P<name>[^,(]+?)\s*\((?P<n>\d+)\)")
 AFFIL = re.compile(r"\((\d+)\)\s*([^()]+?)(?=\s*\(\d+\)|$)")
+MONTHS = {m: i for i, m in enumerate(["january", "february", "march", "april", "may", "june", "july",
+                                       "august", "september", "october", "november", "december"], 1)}
+
+
+def iso_date(text: str, year: int) -> str:
+    """'20 September 2022' -> '2022-09-20'. Cypher compares strings character by character, so dates must be
+    ISO: as printed, '5 June 2024' > '30 July 2025' and every 'published before' query would be wrong."""
+    m = re.match(r"^\s*(\d{1,2})\s+([A-Za-z]+)\.?\s+(\d{4})\s*$", text)
+    if m:
+        month = next((n for name, n in MONTHS.items() if name.startswith(m[2].lower()[:3])), None)
+        if month:
+            return f"{m[3]}-{month:02d}-{int(m[1]):02d}"
+    return str(year)          # unknown format: the year alone still sorts correctly against ISO dates
 
 
 @dataclass
@@ -99,7 +112,8 @@ def parse_pdf(path) -> ParsedPaper:
             paper.authors = [{"name": m["name"].strip(), "affiliation": affil_map.get(m["n"], "")}
                              for m in AUTHOR_WITH_NO.finditer(l["text"])]
         if (vm := VENUE_LINE.match(l["text"])):
-            paper.venue, paper.year, paper.published = vm["venue"], int(vm["year"]), vm["date"]
+            paper.venue, paper.year = vm["venue"], int(vm["year"])
+            paper.published = iso_date(vm["date"], paper.year)
     if not paper.authors and meta.get("author"):
         paper.authors = [{"name": a.strip(), "affiliation": ""} for a in meta["author"].split(";")]
 
