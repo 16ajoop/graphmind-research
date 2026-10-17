@@ -19,7 +19,7 @@
   "relationship_types": {
     "WROTE": "(Author)-[:WROTE {position, affiliation}]->(Paper)",
     "AFFILIATED_WITH": "(Author)-[:AFFILIATED_WITH {first_year, last_year}]->(Institution)",
-    "COAUTHOR": "(Author)-[:COAUTHOR {papers, count}]->(Author), stored in both directions (FalkorDB algorithms follow edge direction)",
+    "COAUTHOR": "(Author)-[:COAUTHOR {papers, count}]->(Author), stored in both directions (FalkorDB's betweenness follows edge direction)",
     "PUBLISHED_IN": "(Paper)-[:PUBLISHED_IN]->(Venue)",
     "CITES": "(Paper)-[:CITES {intent, ref_no, contexts}]->(Paper)",
     "PROPOSES": "(Paper)-[:PROPOSES]->(Method)",

@@ -1,30 +1,45 @@
-"""Write docs/CYPHER.md from the Q dict in analysis.py, so the docs always show the Cypher that actually runs.
+"""Write docs/CYPHER.md from the query dicts in the code, so the docs always show the Cypher that actually runs.
 
     python -m app.graph.export_cypher            # (re)write docs/CYPHER.md
     python -m app.graph.export_cypher --check    # exit 1 if docs/CYPHER.md is out of date
+
+Four dicts hold every named query: the agent's tools (analysis.Q), the citation facts the Extractor agent checks
+(enrich.FACT_Q), agent coordination and memory (memory.MEM_Q) and the UI's reads (api.main.VIEW_Q).
 """
+import importlib
 import re
 import sys
 import textwrap
 from pathlib import Path
 
-from app.graph import analysis
-
-SOURCE = Path(analysis.__file__)
 OUT = Path(__file__).resolve().parents[3] / "docs" / "CYPHER.md"   # graph -> app -> backend -> repo root
 
-KEY = re.compile(r'^\s+"(\w+)":\s*"""')          # a line that starts a query:   "name": """
-SECTION = re.compile(r"^\s+#\s*-{3,}\s*(.+)$")    # a section header comment:     # ---------- title
-COMMENT = re.compile(r"^\s+#\s?(.*)$")            # any other comment line
-START = re.compile(r"^Q\b[^=]*=\s*\{")             # Q = {   or   Q: dict[str, str] = {
+# (module, dict name, part title, one line on what the part is for)
+PARTS = [
+    ("app.graph.analysis", "Q", "Agent tools",
+     "The research agent's tools and the analysis views. Every fact in an answer comes from one of these; "
+     "the LLM never writes Cypher."),
+    ("app.agent.enrich", "FACT_Q", "Citation facts",
+     "What the graph can prove about why paper $a cites paper $b. The Extractor agent checks these before it "
+     "falls back to cue words; each returns true or false."),
+    ("app.agent.memory", "MEM_Q", "Agent coordination and memory",
+     "Jobs the four pipeline agents hand to each other, the lock in the graph, research sessions and insights."),
+    ("app.api.main", "VIEW_Q", "UI views",
+     "Read-only queries behind the web UI's paper panel, map, leaderboard pickers and sessions."),
+]
+
+KEY = re.compile(r'^\s+"(\w+)":\s*"')               # a line that starts a query:   "name": """   or   "name": "
+SECTION = re.compile(r"^\s+#\s*-{3,}\s*(.+)$")      # a section header comment:     # ---------- title
+COMMENT = re.compile(r"^\s+#\s?(.*)$")              # any other comment line
 
 
-def read_comments() -> tuple[dict, dict]:
-    """Walk analysis.py once. Returns {query: section title} and {query: comment lines just above it}."""
-    section, pending, sections, notes = "Other", [], {}, {}
+def read_comments(source: Path, dict_name: str, queries: dict, default: str) -> tuple[dict, dict]:
+    """Walk one source file. Returns {query: section title} and {query: comment lines just above it}."""
+    start = re.compile(rf"^{dict_name}\b[^=]*=\s*\{{")   # Q = {   or   Q: dict[str, str] = {
+    section, pending, sections, notes = default, [], {}, {}
     inside = False
-    for line in SOURCE.read_text(encoding="utf-8").splitlines():
-        if START.match(line):
+    for line in source.read_text(encoding="utf-8").splitlines():
+        if start.match(line):
             inside = True
             continue
         if not inside:
@@ -38,9 +53,9 @@ def read_comments() -> tuple[dict, dict]:
         elif m := KEY.match(line):
             sections[m.group(1)], notes[m.group(1)] = section, pending
             pending = []
-    missing = set(analysis.Q) - set(sections)
+    missing = set(queries) - set(sections)
     if missing:
-        raise SystemExit(f"could not find these queries in {SOURCE.name}: {sorted(missing)}")
+        raise SystemExit(f"could not find these queries in {source.name}: {sorted(missing)}")
     return sections, notes
 
 
@@ -48,44 +63,68 @@ def heading(title: str) -> str:
     return title[:1].upper() + title[1:]          # not .capitalize(): that would turn FalkorDB into falkordb
 
 
-def render() -> str:
-    sections, notes = read_comments()
-    groups: dict[str, list[str]] = {}
-    for name in analysis.Q:                       # dict order = order in the file
-        groups.setdefault(sections.get(name, "Other"), []).append(name)
+def anchor(title: str) -> str:
+    return re.sub(r"[^a-z0-9 -]", "", title.lower()).replace(" ", "-")
 
+
+def load_parts() -> list:
+    parts = []
+    for module_name, dict_name, title, about in PARTS:
+        module = importlib.import_module(module_name)
+        queries = getattr(module, dict_name)
+        source = Path(module.__file__)
+        sections, notes = read_comments(source, dict_name, queries, title)
+        groups: dict[str, list[str]] = {}
+        for name in queries:                      # dict order = order in the file
+            groups.setdefault(sections[name], []).append(name)
+        rel = source.resolve().relative_to(OUT.parents[1]).as_posix()
+        parts.append({"title": title, "about": about, "source": rel, "dict": dict_name,
+                      "queries": queries, "groups": groups, "notes": notes})
+    return parts
+
+
+def render() -> str:
+    parts = load_parts()
+    total = sum(len(p["queries"]) for p in parts)
     out = ["# Cypher queries", "",
-           "Generated by `python -m app.graph.export_cypher` from `backend/app/graph/analysis.py`. Do not edit by hand.",
+           "Generated by `python -m app.graph.export_cypher` from the query dicts in the backend. Do not edit by hand.",
            "",
-           f"{len(analysis.Q)} parameterised queries. Every relationship the agent reports comes from one of them; "
-           "the LLM never writes Cypher.", "", "## Contents", ""]
-    for title, names in groups.items():
-        out.append(f"- **{heading(title)}**: " + ", ".join(f"`{n}`" for n in names))
-    for title, names in groups.items():
-        out += ["", f"## {heading(title)}"]
-        for name in names:
-            cypher = textwrap.dedent(analysis.Q[name]).strip()
-            params = sorted(set(re.findall(r"\$(\w+)", cypher)))
-            out += ["", f"### {name}", ""]
-            if notes.get(name):
-                out += [" ".join(notes[name]), ""]
-            out += [f"Parameters: {', '.join(f'`${p}`' for p in params) if params else 'none'}", "",
-                    "```cypher", cypher, "```"]
+           f"{total} named, parameterised queries in four groups. The graph writes that build papers, authors, "
+           "citations and results from a PDF are in `backend/app/graph/ingest.py`, next to the parsing code.",
+           "", "## Contents", ""]
+    for p in parts:
+        out.append(f"- [{p['title']}](#{anchor(p['title'])}) ({len(p['queries'])}, `{p['source']}` `{p['dict']}`): "
+                   f"{p['about']}")
+    for p in parts:
+        out += ["", f"## {p['title']}", "", f"From `{p['source']}` (`{p['dict']}`). {p['about']}"]
+        many_sections = len(p["groups"]) > 1
+        for title, names in p["groups"].items():
+            if many_sections:
+                out += ["", f"### {heading(title)}"]
+            for name in names:
+                cypher = textwrap.dedent(p["queries"][name]).strip()
+                params = sorted(set(re.findall(r"\$(\w+)", cypher)))
+                out += ["", f"#### {name}" if many_sections else f"### {name}", ""]
+                if p["notes"].get(name):
+                    out += [" ".join(p["notes"][name]), ""]
+                out += [f"Parameters: {', '.join(f'`${x}`' for x in params) if params else 'none'}", "",
+                        "```cypher", cypher, "```"]
     return "\n".join(out) + "\n"
 
 
 def main() -> int:
     text = render()
+    count = text.count("\n```cypher\n")
     if "--check" in sys.argv:
         current = OUT.read_text(encoding="utf-8") if OUT.exists() else ""
         if current != text:
             print(f"{OUT} is out of date: run python -m app.graph.export_cypher")
             return 1
-        print(f"{OUT} is up to date ({len(analysis.Q)} queries)")
+        print(f"{OUT} is up to date ({count} queries)")
         return 0
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(text, encoding="utf-8", newline="\n")
-    print(f"wrote {OUT} ({len(analysis.Q)} queries)")
+    print(f"wrote {OUT} ({count} queries)")
     return 0
 
 

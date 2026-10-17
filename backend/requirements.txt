@@ -1,4 +1,5 @@
 falkordb
+redis
 chromadb>=1.0
 langgraph>=1.0
 fastapi
