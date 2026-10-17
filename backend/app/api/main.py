@@ -19,9 +19,10 @@ from redis.retry import Retry
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
-from app.agent import memory, pipeline, workflow
 from app.config import settings
+from app.agent import memory, pipeline, workflow
 from app.docs.docstore import DocStore
+
 from app.eval_extraction import score
 from app.graph.analysis import Analysis
 from app.graph.client import UnknownWorkspace, get_db, graph_for, list_workspaces
@@ -178,14 +179,22 @@ def ensure_agents(ws: str, graph) -> None:
 
 
 # ---------------------------------------------------------------- health and workspaces
+
 @app.get("/api/health")
 def health():
-    status = {"falkordb": falkordb_up(), "ollama": False, "agents": sorted(_agents)}
-    try:
-        status["ollama"] = httpx.get(f"{OLLAMA_URL}/api/tags", timeout=2).status_code == 200
-    except httpx.HTTPError:
-        pass
-    return JSONResponse(status, status_code=200 if status["falkordb"] else 503)
+    from app.config import settings
+
+    status = {
+        "falkordb": falkordb_up(),
+        "llm_provider": settings.llm_provider,
+        "embed_provider": settings.embed_provider,
+        "agents": sorted(_agents),
+    }
+    return JSONResponse(
+        status,
+        status_code=200 if status["falkordb"] else 503,
+    )
+
 
 
 class NewWorkspace(BaseModel):

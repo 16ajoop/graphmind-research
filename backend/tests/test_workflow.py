@@ -88,7 +88,7 @@ def test_every_query_is_logged_with_its_cypher_and_questions_are_remembered(g):
 
 def test_llm_answer_is_used_only_if_it_names_nothing_outside_the_facts(g, monkeypatch):
     reply = {"answer": "No: GraphFuse is higher on both 3-hop splits [1][2]."}
-    monkeypatch.setattr(llm, "ollama_json", lambda system, user, schema, timeout=120: reply)
+    monkeypatch.setattr(llm, "provider_json", lambda system, user, schema, timeout=120: reply)
     s = workflow.ask(g, "Is HopLens really state of the art?")
     assert s["answer_source"] == "llm" and s["answer"].startswith("No: GraphFuse")
     reply["answer"] = "No: LinkLite is better."                    # LinkLite is in the graph but not in these facts

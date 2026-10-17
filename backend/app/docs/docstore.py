@@ -1,20 +1,79 @@
+
 """ChromaDB passage store. FalkorDB decides WHICH paper/section proves a relationship;
 ChromaDB finds the best PASSAGE inside it. Chunk metadata paper_id == FalkorDB Paper.id."""
+
 import os
 
 import chromadb
 import httpx
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
-EMBED_MODEL = os.getenv("EMBED_MODEL", "nomic-embed-text")
+from app.config import BACKEND_DIR, settings
+
+
+EMBED_PROVIDER = settings.embed_provider.strip().lower()
+OLLAMA_URL = settings.ollama_url
+EMBED_MODEL = settings.embed_model
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_EMBED_MODEL = os.getenv(
+    "GEMINI_EMBED_MODEL", "gemini-embedding-001"
+)
+
 
 
 def ollama_embed(texts: list[str], kind: str) -> list[list[float]]:
-    """nomic-embed-text wants task prefixes: 'search_document: ' for passages, 'search_query: ' for questions."""
-    prefix = "search_document: " if kind == "document" else "search_query: "
-    r = httpx.post(f"{OLLAMA_URL}/api/embed", json={"model": EMBED_MODEL, "input": [prefix + t for t in texts]}, timeout=120)
-    r.raise_for_status()
-    return r.json()["embeddings"]
+    """Generate embeddings using Gemini or local Ollama."""
+    if not texts:
+        return []
+
+    if EMBED_PROVIDER == "gemini":
+        if not GEMINI_API_KEY:
+            raise RuntimeError("GEMINI_API_KEY is missing")
+
+        task_type = (
+            "RETRIEVAL_DOCUMENT"
+            if kind == "document"
+            else "RETRIEVAL_QUERY"
+        )
+        embeddings = []
+
+        for text in texts:
+            response = httpx.post(
+                f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_EMBED_MODEL}:embedContent",
+                headers={
+                    "x-goog-api-key": GEMINI_API_KEY,
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": f"models/{GEMINI_EMBED_MODEL}",
+                    "content": {"parts": [{"text": text}]},
+                    "taskType": task_type,
+                },
+                timeout=120,
+            )
+            response.raise_for_status()
+            embeddings.append(response.json()["embedding"]["values"])
+
+        return embeddings
+
+    if EMBED_PROVIDER == "ollama":
+        prefix = (
+            "search_document: " if kind == "document"
+            else "search_query: "
+        )
+        response = httpx.post(
+            f"{OLLAMA_URL}/api/embed",
+            json={
+                "model": EMBED_MODEL,
+                "input": [prefix + text for text in texts],
+            },
+            timeout=120,
+        )
+        response.raise_for_status()
+        return response.json()["embeddings"]
+
+    raise ValueError(f"Unsupported EMBED_PROVIDER: {EMBED_PROVIDER}")
+
+
 
 
 def chunk(text: str, max_chars: int = 700) -> list[str]:

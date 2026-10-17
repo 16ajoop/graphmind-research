@@ -38,6 +38,7 @@ class FakeOllama(BaseHTTPRequestHandler):
 def fake(monkeypatch):
     srv = HTTPServer(("127.0.0.1", 0), FakeOllama)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
+    monkeypatch.setattr(llm, "LLM_PROVIDER", "ollama")
     monkeypatch.setattr(llm, "OLLAMA_URL", f"http://127.0.0.1:{srv.server_port}")
     yield
     srv.shutdown()
@@ -62,6 +63,7 @@ def test_relation_and_answer_leak_check(fake):
 
 
 def test_fallback_when_ollama_is_down(monkeypatch):
+    monkeypatch.setattr(llm, "LLM_PROVIDER", "ollama")
     monkeypatch.setattr(llm, "OLLAMA_URL", "http://127.0.0.1:1")
     assert llm.classify_intent("A", "B", ["We compare against HopRank [3]."], keyword_intent) == ("compares_against", "keywords")
     assert llm.extract_claims("A", "x", "y", ["HopRank"]) == []

@@ -10,23 +10,69 @@ import re
 import httpx
 
 from app.graph.ingest import norm
+from app.config import settings
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
-LLM_MODEL = os.getenv("LLM_MODEL", "llama3.2:latest")
+LLM_PROVIDER = settings.llm_provider.strip().lower()
+OLLAMA_URL = settings.ollama_url
+LLM_MODEL = settings.llm_model
+GROQ_API_KEY = settings.groq_api_key
+GROQ_MODEL = settings.groq_model
+
 INTENTS = ["extends", "compares_against", "uses_dataset", "uses_method", "reproduces",
            "supports", "criticizes", "corrects", "background"]
 CLAIM_TYPES = ["comparative", "causal", "sota", "efficiency", "observational"]
 RELATIONS = ["UNRELATED", "SUPPORTS", "CONTRADICTS", "QUALIFIES"]
 
 
-def ollama_json(system: str, user: str, schema: dict, timeout: float = 120) -> dict:
-    """Ollama structured output: 'format' takes a JSON schema; the reply content is a JSON string."""
-    resp = httpx.post(f"{OLLAMA_URL}/api/chat", timeout=timeout, json={
-        "model": LLM_MODEL, "stream": False, "format": schema, "options": {"temperature": 0},
-        "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-    })
-    resp.raise_for_status()
-    return json.loads(resp.json()["message"]["content"])
+def provider_json(system: str, user: str, schema: dict, timeout: float = 120) -> dict:
+    """Call the configured LLM provider and parse its JSON response."""
+    if LLM_PROVIDER == "groq":
+        if not GROQ_API_KEY:
+            raise RuntimeError("GROQ_API_KEY is missing")
+
+        system_with_schema = (
+            system
+            + "\nReturn a valid JSON object matching this JSON Schema:\n"
+            + json.dumps(schema)
+        )
+
+        resp = httpx.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={"Authorization": f"Bearer {GROQ_API_KEY}"},
+            timeout=timeout,
+            json={
+                "model": GROQ_MODEL,
+                "temperature": 0,
+                "response_format": {"type": "json_object"},
+                "messages": [
+                    {"role": "system", "content": system_with_schema},
+                    {"role": "user", "content": user},
+                ],
+            },
+        )
+        resp.raise_for_status()
+        content = resp.json()["choices"][0]["message"]["content"]
+        return json.loads(content)
+
+    if LLM_PROVIDER == "ollama":
+        resp = httpx.post(
+            f"{OLLAMA_URL}/api/chat",
+            timeout=timeout,
+            json={
+                "model": LLM_MODEL,
+                "stream": False,
+                "format": schema,
+                "options": {"temperature": 0},
+                "messages": [
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": user},
+                ],
+            },
+        )
+        resp.raise_for_status()
+        return json.loads(resp.json()["message"]["content"])
+
+    raise ValueError(f"Unsupported LLM_PROVIDER: {LLM_PROVIDER}")
 
 
 # ---------------------------------------------------------------- 1. citation intent
@@ -58,7 +104,7 @@ def classify_intent(citing_title: str, cited_title: str, contexts: list, fallbac
             + "Sentences where the cited paper appears:\n" + "\n".join(f"- {c}" for c in contexts[:4]))
     schema = {"type": "object", "properties": {"intent": {"type": "string", "enum": options}}, "required": ["intent"]}
     try:
-        intent = ollama_json(system, user, schema)["intent"]
+        intent = provider_json(system, user, schema)["intent"]
         if intent in options:
             return intent, "llm"
     except Exception:
@@ -124,7 +170,7 @@ def extract_claims(title: str, abstract: str, conclusion: str, known_entities: l
     numbered = "\n".join(f"{i}. {s}" for i, s in enumerate(sentences, 1))
     user = f"Title: {title}\nKNOWN ENTITIES:\n{listing}\n\nSentences:\n{numbered}"
     try:
-        picked = ollama_json(CLAIM_SYSTEM, user, CLAIM_SCHEMA)["claims"]
+        picked = provider_json(CLAIM_SYSTEM, user, CLAIM_SCHEMA)["claims"]
     except Exception:
         return []
     canonical = {norm(n): n for n in known_entities}
@@ -161,7 +207,7 @@ def judge_claims(newer: dict, older: dict, facts: list | None = None) -> dict:
             + ("Facts from the knowledge graph:\n" + "\n".join(f"- {f}" for f in facts) + "\n\n" if facts else "")
             + "How does B relate to A?")
     try:
-        out = ollama_json(REL_SYSTEM, user, REL_SCHEMA)
+        out = provider_json(REL_SYSTEM, user, REL_SCHEMA)
         return out if out["relation"] in RELATIONS else {"relation": "UNRELATED", "basis": "invalid model output"}
     except Exception as exc:
         return {"relation": "UNRELATED", "basis": f"LLM unavailable: {exc.__class__.__name__}"}
@@ -175,7 +221,7 @@ def write_answer(question: str, facts: list, allowed_names: set, all_names: set)
               "If the facts do not answer the question, say what is missing. Answer with JSON only.")
     user = f"Question: {question}\nFacts:\n" + "\n".join(f"[{i + 1}] {f}" for i, f in enumerate(facts))
     try:
-        text = ollama_json(system, user, schema)["answer"]
+        text = provider_json(system, user, schema)["answer"]
     except Exception:
         return ""
     leaked = [n for n in all_names - allowed_names if n.lower() in text.lower()]

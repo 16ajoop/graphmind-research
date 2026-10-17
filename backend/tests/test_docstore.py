@@ -55,9 +55,15 @@ def test_evidence_stays_inside_the_papers_the_graph_chose(tmp_path):
     assert store.section_vector("P03", "Results") is None
 
 
-def test_real_ollama_embeddings():
+
+def test_real_ollama_embeddings(monkeypatch):
+    monkeypatch.setattr("app.docs.docstore.EMBED_PROVIDER", "ollama")
     try:
-        vec = ollama_embed(["GraphWalker-QA took its entity links from the dataset annotations."], "query")[0]
+        vec = ollama_embed(
+            ["GraphWalker-QA took its entity links from the dataset annotations."],
+            "query",
+        )[0]
     except (httpx.HTTPError, KeyError) as e:
         pytest.skip(f"Ollama / nomic-embed-text not available at {OLLAMA_URL}: {e}")
-    assert len(vec) == 768                                       # nomic-embed-text vector size
+
+    assert len(vec) == 768  # nomic-embed-text vector size
