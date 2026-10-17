@@ -1,12 +1,23 @@
 # GraphMind Research
 
-Drop a folder of research papers in. Four agents read them and build a knowledge graph in FalkorDB: who cites whom
-and why, which method extends which, every number from every results table, and what each paper claims. Then ask
-how the papers relate, and get answers in which every sentence comes from a graph query you can open and check.
+**Turn a folder of research papers into a knowledge graph you can question, explore, and verify.**
 
-**Tracks:** Agents That Act on Connected Data · Agent Memory and Coordination
-**Demo video:** DEMO_VIDEO_LINK
-**Built for:** Graph Hacks (WeMakeDevs × FalkorDB), 15–18 October 2026
+Research papers rarely tell the whole story in isolation. GraphMind Research connects them into a living research knowledge graph using **FalkorDB and four collaborating agents**—revealing who cites whom and why, how methods build on one another, what results tables report, and which claims each paper makes.
+
+Ask a question across your collection and get answers grounded in graph queries, with the underlying Cypher available to inspect. Instead of asking an AI to simply summarize papers, you can trace its answers back to the structured relationships and evidence behind them.
+
+### Built for Graph Hacks 2026
+
+- **Tracks:** Agents That Act on Connected Data · Agent Memory and Coordination
+- **Built with:** FalkorDB · LangGraph · FastAPI · React · Ollama
+- **Event:** Graph Hacks — WeMakeDevs × FalkorDB
+- **Dates:** 15–18 October 2026
+- **Demo:** [Watch the project demo](DEMO_VIDEO_LINK)
+- **Documentation:** [Build Guide](docs/BUILD_GUIDE.md) · [Data Model](docs/DATA_MODEL.md) · [Cypher Reference](docs/CYPHER.md) · [Evaluation](docs/EVALUATION.md)
+
+---
+
+
 
 **Project documentation:** [Build Guide](docs/BUILD_GUIDE.md) · [Data Model](docs/DATA_MODEL.md) · [Cypher Reference](docs/CYPHER.md) · [Evaluation](docs/EVALUATION.md)
 
