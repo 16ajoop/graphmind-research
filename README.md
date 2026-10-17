@@ -42,6 +42,7 @@ python -m app.graph.ingest --workspace demo ../corpus/pdf                       
 python -m app.eval_extraction --workspace demo                                     # scorecard vs gold graph
 python -m app.graph.ingest --workspace baseline --keyword-intents ../corpus/pdf    # + keyword intent baseline
 python -m app.eval_extraction --workspace baseline
+python -m uvicorn app.api.main:app --port 8000                                     # Run the API (from backend/)
 
 cd ..\frontend
 npm install
