@@ -1,10 +1,15 @@
+
 @import "tailwindcss";
 @import "@fontsource-variable/source-serif-4/opsz.css";
 @import "@fontsource-variable/hanken-grotesk/index.css";
 @import "@xyflow/react/dist/style.css";
 
-/* GraphMind's palette: a marked-up paper. Ink on vellum, a fountain pen for actions,
-   a proofreader's red for problems, a highlighter for the passages that back an answer. */
+/*
+  GraphMind Research
+  Theme-aware palette: marked-up paper in light mode,
+  a comfortable research workspace in dark mode.
+*/
+
 @theme {
   --color-vellum: #f4f6f3;
   --color-sheet: #ffffff;
@@ -22,36 +27,186 @@
   --font-mono: "Cascadia Code", Consolas, ui-monospace, monospace;
 }
 
+/* Light theme: original GraphMind palette */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-vellum: #f4f6f3;
+  --color-sheet: #ffffff;
+  --color-ink: #1d2b3a;
+  --color-graphite: #5b6875;
+  --color-rule: #d9ded8;
+  --color-pen: #2c4bb5;
+  --color-pen-soft: #e6eafa;
+  --color-proof: #b8322a;
+  --color-proof-soft: #f8e5e3;
+  --color-highlight: #f6e85c;
+}
+
+/* Dark theme */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-vellum: #0f1724;
+  --color-sheet: #182334;
+  --color-ink: #e5edf7;
+  --color-graphite: #a4b2c4;
+  --color-rule: #344256;
+  --color-pen: #9aafff;
+  --color-pen-soft: #263653;
+  --color-proof: #ff938c;
+  --color-proof-soft: #40272d;
+  --color-highlight: #65591e;
+}
+
+/* Base styles */
 @layer base {
   html {
+    min-height: 100%;
     font-family: var(--font-sans);
     font-size: 15px;
     color: var(--color-ink);
     background: var(--color-vellum);
+    color-scheme: light;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
-  h1, h2, h3 {
+
+  :root[data-theme="dark"] html {
+    color-scheme: dark;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--color-ink);
+    background: var(--color-vellum);
+    font-family: var(--font-sans);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  h1,
+  h2,
+  h3 {
     font-family: var(--font-serif);
     font-weight: 600;
     letter-spacing: -0.01em;
   }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  input,
+  textarea,
+  select {
+    color: var(--color-ink);
+    background-color: var(--color-sheet);
+    border-color: var(--color-rule);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-graphite);
+    opacity: 0.8;
+  }
+
   :focus-visible {
     outline: 2px solid var(--color-pen);
     outline-offset: 2px;
   }
-  button:not(:disabled), [role="button"] {
+
+  button:not(:disabled),
+  [role="button"] {
     cursor: pointer;
+  }
+
+  ::selection {
+    color: var(--color-ink);
+    background: var(--color-pen-soft);
+  }
+
+  a {
+    transition: color 0.2s ease;
   }
 }
 
-/* An evidence passage: the words a fact rests on, marked as if with a highlighter. */
+/* Smooth theme transitions for common surfaces */
+body,
+aside,
+main,
+header,
+nav,
+section,
+article,
+input,
+textarea,
+select,
+button,
+[role="dialog"] {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Evidence passage highlighting */
 .highlighted {
-  background: linear-gradient(transparent 12%, color-mix(in srgb, var(--color-highlight) 70%, transparent) 12%,
-    color-mix(in srgb, var(--color-highlight) 70%, transparent) 88%, transparent 88%);
+  background: linear-gradient(
+    transparent 12%,
+    color-mix(in srgb, var(--color-highlight) 70%, transparent) 12%,
+    color-mix(in srgb, var(--color-highlight) 70%, transparent) 88%,
+    transparent 88%
+  );
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   padding: 0 0.15em;
 }
 
+/* React Flow canvas support */
+.react-flow {
+  background: var(--color-vellum);
+  color: var(--color-ink);
+}
+
+.react-flow__node {
+  color: var(--color-ink);
+}
+
+.react-flow__edge-text {
+  fill: var(--color-ink);
+}
+
+.react-flow__controls {
+  border: 1px solid var(--color-rule);
+  background: var(--color-sheet);
+}
+
+.react-flow__controls-button {
+  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-sheet);
+  fill: var(--color-ink);
+}
+
+.react-flow__minimap {
+  border: 1px solid var(--color-rule);
+  background: var(--color-sheet);
+}
+
+/* Reduced-motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
