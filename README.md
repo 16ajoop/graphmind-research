@@ -49,6 +49,9 @@ npm install
 npm run dev                                # http://localhost:5173
 ```
 
+UI: in a second terminal, `cd frontend` then `npm run dev`, and open http://localhost:5173 (the API must be
+running on port 8000).
+
 The analysis CLI takes the workspace name (`gold`), not the graph name (`ws_gold`); the `ws_` prefix is added for you.
 
 ## Demo questions

@@ -188,7 +188,7 @@ def facts_from(tool: str, rows: list, names: dict) -> list:
         elif tool == "library_papers":
             add(f"{r['year']}: {r['title']} by {', '.join(r['authors'])}.", [r["id"]])
         elif tool == "recall_insights":
-            add(f"Saved insight ({r['session']}): {r['insight']}.")
+            add(f"Saved insight ({r['session']}): {r['insight'].rstrip('.')}.")
         elif tool == "whats_new_since":
             add(f"New since you asked \"{r['earlier_question']}\": {r['paper']} ({r['relation']} {names.get(r['topic'], r['topic'])}).",
                 [r["paper_id"]])

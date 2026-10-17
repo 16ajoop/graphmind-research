@@ -82,6 +82,8 @@ def test_every_query_is_logged_with_its_cypher_and_questions_are_remembered(g):
     memory.save_insight(g, session, "HopLens missed GraphFuse", ["m-hoplens"])
     s = workflow.ask(g, "What did I save earlier about HopLens?", session_id=session, use_llm=False)
     assert s["intent"] == "recall" and any("HopLens missed GraphFuse" in f for f in facts(s))
+    s = workflow.ask(g, "What did I save earlier?", session_id=session, use_llm=False)   # no names: every insight
+    assert any("HopLens missed GraphFuse" in f for f in facts(s))
 
 
 def test_llm_answer_is_used_only_if_it_names_nothing_outside_the_facts(g, monkeypatch):

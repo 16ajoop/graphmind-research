@@ -1,1 +1,57 @@
 @import "tailwindcss";
+@import "@fontsource-variable/source-serif-4/opsz.css";
+@import "@fontsource-variable/hanken-grotesk/index.css";
+@import "@xyflow/react/dist/style.css";
+
+/* GraphMind's palette: a marked-up paper. Ink on vellum, a fountain pen for actions,
+   a proofreader's red for problems, a highlighter for the passages that back an answer. */
+@theme {
+  --color-vellum: #f4f6f3;
+  --color-sheet: #ffffff;
+  --color-ink: #1d2b3a;
+  --color-graphite: #5b6875;
+  --color-rule: #d9ded8;
+  --color-pen: #2c4bb5;
+  --color-pen-soft: #e6eafa;
+  --color-proof: #b8322a;
+  --color-proof-soft: #f8e5e3;
+  --color-highlight: #f6e85c;
+
+  --font-serif: "Source Serif 4 Variable", Georgia, serif;
+  --font-sans: "Hanken Grotesk Variable", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Cascadia Code", Consolas, ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--color-ink);
+    background: var(--color-vellum);
+  }
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-pen);
+    outline-offset: 2px;
+  }
+  button:not(:disabled), [role="button"] {
+    cursor: pointer;
+  }
+}
+
+/* An evidence passage: the words a fact rests on, marked as if with a highlighter. */
+.highlighted {
+  background: linear-gradient(transparent 12%, color-mix(in srgb, var(--color-highlight) 70%, transparent) 12%,
+    color-mix(in srgb, var(--color-highlight) 70%, transparent) 88%, transparent 88%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

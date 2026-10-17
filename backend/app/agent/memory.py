@@ -74,10 +74,13 @@ MEM_Q = {
     "reading_list_add": """
         MATCH (s:ResearchSession {id: $session}), (p:Paper {id: $paper}) MERGE (s)-[r:READING_LIST]->(p)
         SET r.added_at = timestamp(), r.reason = $reason""",
+    # Insights about any of $ids; with no ids (e.g. "What did I save earlier?") every saved insight.
     "recall_insights": """
-        MATCH (i:Insight)-[:ABOUT]->(x) WHERE x.id IN $ids
-        MATCH (s:ResearchSession)-[:SAVED]->(i)
-        RETURN i.text AS insight, collect(DISTINCT x.id) AS about, s.title AS session, i.saved_at AS saved_at
+        MATCH (s:ResearchSession)-[:SAVED]->(i:Insight)
+        OPTIONAL MATCH (i)-[:ABOUT]->(x)
+        WITH s, i, collect(DISTINCT x.id) AS about
+        WHERE size($ids) = 0 OR any(a IN about WHERE a IN $ids)
+        RETURN i.text AS insight, about, s.title AS session, i.saved_at AS saved_at
         ORDER BY saved_at DESC""",
     "session_history": """
         MATCH (s:ResearchSession {id: $session})-[:ASKED]->(q:Question)

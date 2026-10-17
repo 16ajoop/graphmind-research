@@ -14,6 +14,8 @@ from pathlib import Path
 import httpx
 import redis
 from fastapi import Depends, FastAPI, File, HTTPException, Request, UploadFile
+from redis.backoff import NoBackoff
+from redis.retry import Retry
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
@@ -122,8 +124,10 @@ app = FastAPI(title="GraphMind Research API", lifespan=lifespan)
 
 # ---------------------------------------------------------------- FalkorDB first
 def falkordb_up() -> bool:
+    # No retries: redis-py retries a refused connection with backoff (about 4 s), and the UI should hear "down" at once.
     try:
-        return bool(redis.Redis(host=FALKOR_HOST, port=FALKOR_PORT, socket_connect_timeout=1, socket_timeout=2).ping())
+        return bool(redis.Redis(host=FALKOR_HOST, port=FALKOR_PORT, socket_connect_timeout=1, socket_timeout=2,
+                                retry=Retry(NoBackoff(), 0)).ping())
     except redis.exceptions.RedisError:
         return False
 
