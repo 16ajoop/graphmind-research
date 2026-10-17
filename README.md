@@ -8,7 +8,12 @@ how the papers relate, and get answers in which every sentence comes from a grap
 **Demo video:** DEMO_VIDEO_LINK
 **Built for:** Graph Hacks (WeMakeDevs × FalkorDB), 15–18 October 2026
 
-![The library map: papers in year rows, citations coloured by why they were made](docs/screenshots/library-map.png)
+**Project documentation:** [Build Guide](docs/BUILD_GUIDE.md) · [Data Model](docs/DATA_MODEL.md) · [Cypher Reference](docs/CYPHER.md) · [Evaluation](docs/EVALUATION.md)
+
+
+<img width="2880" height="1800" alt="library-map" src="https://github.com/user-attachments/assets/6257b47f-c010-43ba-b303-a237ae306a5f" />
+
+
 
 ## What you can ask
 
@@ -24,8 +29,9 @@ how the papers relate, and get answers in which every sentence comes from a grap
 
 The same findings have their own pages in the web UI: Library, Ask, Compare papers, Leaderboards, Disagreements,
 Citation check, Research gaps, People and Sessions.
+<img width="2880" height="1800" alt="ask" src="https://github.com/user-attachments/assets/ee1c7649-e19d-42db-b67b-24aaf42e3cd5" />
 
-![Ask: the answer's facts, each from a named graph query, with the Cypher one click away](docs/screenshots/ask.png)
+
 
 ## Why it needs a graph
 
@@ -50,7 +56,8 @@ FalkorDB is not a store behind a chat box here; every feature is a graph query.
 
 ## Architecture
 
-![Architecture: build path (four agents) and ask path (seven steps)](docs/graphmind-architecture.png)
+<img width="3200" height="2580" alt="graphmind-architecture" src="https://github.com/user-attachments/assets/f28f9fc3-0914-4fe6-bf74-3b1dd248edab" />
+
 
 **The graph decides, the LLM judges, the vector store explains.**
 
@@ -133,7 +140,8 @@ All 67 named queries are in [`docs/CYPHER.md`](docs/CYPHER.md), generated from t
 **Pipeline agents (Agent Memory and Coordination).** Parser, Extractor, Linker and Critic run as separate threads and
 coordinate only through FalkorDB:
 
-![The pipeline board during an upload: every paper parsed, the Extractor working through the second wave](docs/screenshots/pipeline.png)
+<img width="2880" height="1800" alt="pipeline" src="https://github.com/user-attachments/assets/2006ebb2-537a-47c4-920e-c545d2d30961" />
+
 
 - *Claim:* one write query finds a ready job for the agent's stage and marks it running. FalkorDB runs write queries
   one at a time per graph, so two agents can never claim the same job.
