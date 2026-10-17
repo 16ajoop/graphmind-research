@@ -285,5 +285,5 @@ that the correct graph is known and the extraction can be measured. No real, pay
 ## AI assistance
 
 AI coding assistants were used, as the rules allow: Claude (Anthropic) for design and the step-by-step instructions,
-and Claude Code to apply them in this repository. What was done by whom, and every instruction file in order, is in
+and Claude Code to apply them in this repository. Every instruction file in order, is in
 [`docs/ai-assistance/`](docs/ai-assistance/README.md).
