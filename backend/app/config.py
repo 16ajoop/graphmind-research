@@ -41,6 +41,9 @@ def _path(name: str, default: str) -> Path:
 class Settings:
     falkordb_host: str = field(default_factory=lambda: _str("FALKORDB_HOST", "localhost"))
     falkordb_port: int = field(default_factory=lambda: _int("FALKORDB_PORT", 6379))
+    falkordb_username: str = field(default_factory=lambda: _str("FALKORDB_USERNAME", ""))
+    falkordb_password: str = field(default_factory=lambda: _str("FALKORDB_PASSWORD", ""))
+    falkordb_ssl: bool = field(default_factory=lambda: _str("FALKORDB_SSL", "false").strip().lower() in ("1", "true", "yes", "on"))
     default_workspace: str = field(default_factory=lambda: _str("DEFAULT_WORKSPACE", "demo"))
     ollama_url: str = field(default_factory=lambda: _str("OLLAMA_URL", "http://localhost:11434"))
     llm_model: str = field(default_factory=lambda: _str("LLM_MODEL", "llama3.2:latest"))

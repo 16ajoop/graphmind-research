@@ -20,14 +20,23 @@ class UnknownWorkspace(LookupError):
     """A read asked for a workspace that has never been created."""
 
 
+
 @cache
 def get_db() -> FalkorDB:
     """Return the shared FalkorDB client (one connection pool per process)."""
+    cloud_host = settings.falkordb_host
+    cloud_password = settings.falkordb_password
+
     return FalkorDB(
-        host=settings.falkordb_host,
+        host=cloud_host,
         port=settings.falkordb_port,
-        socket_connect_timeout=2,
+        username=settings.falkordb_username or None,
+        password=cloud_password or None,
+        ssl=settings.falkordb_ssl,
+        ssl_check_hostname=settings.falkordb_ssl,
+        socket_connect_timeout=10,
     )
+
 
 
 def graph_for(workspace: str, must_exist: bool = False) -> Graph:
