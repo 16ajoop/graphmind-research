@@ -12,7 +12,9 @@ Ask a question across your collection and get answers grounded in graph queries,
 - **Built with:** FalkorDB · LangGraph · FastAPI · React · Ollama
 - **Event:** Graph Hacks — WeMakeDevs × FalkorDB
 - **Dates:** 15–18 October 2026
-- **Demo:** [Watch the project demo](DEMO_VIDEO_LINK)
+- **Demo:** [Watch the project demo](https://youtu.be/vD7wVlujQkM)
+- **Blog:** [Project Blog](https://builder.aws.com/content/3KrhSkQfUi6w3udtO7mhNTTEENb/graphmind-research-building-an-intelligent-research-assistant-with-falkordb)
+- **Deployed Link:** [Project Live Link](https://graphmind-research.vercel.app/library)
 - **Documentation:** [Build Guide](docs/BUILD_GUIDE.md) · [Data Model](docs/DATA_MODEL.md) · [Cypher Reference](docs/CYPHER.md) · [Evaluation](docs/EVALUATION.md)
 
 ---
@@ -281,12 +283,12 @@ backend/
   app/           config.py (settings from .env), health.py (service check), eval_extraction.py (scoring)
   app/api/       main.py (FastAPI; server-sent events for the agent)
   tests/
-frontend/src/    pages/ (one per screen), components/ (map, pipeline board, step timeline, answers)
-corpus/          12 synthetic papers: pdf/ and their source_md/
-ground_truth/    gold_graph.json, expected_answers.json
-ontology.json    node labels, relationship types, closed vocabularies
-docs/            CYPHER.md, DATA_MODEL.md, EVALUATION.md, BUILD_GUIDE.md, architecture diagram, screenshots,
-                 ai-assistance/
+  frontend/src/    pages/ (one per screen), components/ (map, pipeline board, step timeline, answers)
+  corpus/          12 synthetic papers: pdf/ and their source_md/
+  ground_truth/    gold_graph.json, expected_answers.json
+  ontology.json    node labels, relationship types, closed vocabularies
+  docs/            CYPHER.md, DATA_MODEL.md, EVALUATION.md, BUILD_GUIDE.md, architecture diagram, screenshots,
+                   ai-assistance/
 ```
 
 ## Data
@@ -304,5 +306,4 @@ that the correct graph is known and the extraction can be measured. No real, pay
 ## AI assistance
 
 AI coding assistants were used, as the rules allow: Claude (Anthropic) for design and the step-by-step instructions,
-and Claude Code to apply them in this repository. Every instruction file in order, is in
-[`docs/ai-assistance/`](docs/ai-assistance/README.md).
+and Claude Code to apply them in this repository.
