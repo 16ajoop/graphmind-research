@@ -138,7 +138,8 @@ def falkordb_up() -> bool:
             socket_timeout=3,
             retry=Retry(NoBackoff(), 0),
         ).ping())
-    except redis.exceptions.RedisError:
+    except redis.exceptions.RedisError as exc:
+        print(f"FalkorDB health check failed: {type(exc).__name__}: {exc}", flush=True)
         return False
 
 @app.exception_handler(redis.exceptions.ConnectionError)
