@@ -122,6 +122,35 @@ async def lifespan(app):
 
 app = FastAPI(title="GraphMind Research API", lifespan=lifespan)
 
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+
+    from fastapi.openapi.utils import get_openapi
+
+    schema = get_openapi(
+        title=app.title,
+        version=app.version,
+        routes=app.routes,
+    )
+
+    upload_schema = schema.get("components", {}).get("schemas", {}).get(
+        "Body_upload_api_workspaces__ws__papers_post", {}
+    )
+
+    files_schema = upload_schema.get("properties", {}).get("files", {})
+    items_schema = files_schema.get("items", {})
+
+    if items_schema.get("type") == "string":
+        items_schema["format"] = "binary"
+        items_schema.pop("contentMediaType", None)
+
+    app.openapi_schema = schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
+
 
 # ---------------------------------------------------------------- FalkorDB first
 def falkordb_up() -> bool:
