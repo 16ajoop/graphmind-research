@@ -8,10 +8,13 @@ export class ApiError extends Error {
   }
 }
 
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? ''
+const apiUrl = (path: string) => `${API_BASE}/api${path}`
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let r: Response
   try {
-    r = await fetch(`/api${path}`, init)
+    r = await fetch(apiUrl(path), init)
   } catch {
     throw new ApiError(0, 'The API is not running. Start it in backend/: uvicorn app.api.main:app --port 8000')
   }
@@ -134,7 +137,7 @@ const ws = (name: string) => `/workspaces/${encodeURIComponent(name)}`
 
 export const api = {
   health: async (): Promise<Health> => {
-    const r = await fetch('/api/health').catch(() => null)
+    const r = await fetch(apiUrl('/health')).catch(() => null)
     if (!r) return { falkordb: false, ollama: false, agents: [] }
     return r.json()
   },
@@ -175,7 +178,7 @@ export async function askStream(w: string, sid: string, question: string, onEven
                                 signal?: AbortSignal): Promise<void> {
   let r: Response
   try {
-    r = await fetch(`/api${ws(w)}/sessions/${sid}/ask`, { ...json({ question }), signal })
+    r = await fetch(apiUrl(`${ws(w)}/sessions/${sid}/ask`), { ...json({ question }), signal })
   } catch (e) {
     if ((e as Error).name === 'AbortError') return
     throw new ApiError(0, 'The API is not running. Start it in backend/: uvicorn app.api.main:app --port 8000')
