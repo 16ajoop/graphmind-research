@@ -12,7 +12,8 @@ Ask a question across your collection and get answers grounded in graph queries,
 - **Built with:** FalkorDB · LangGraph · FastAPI · React · Ollama
 - **Event:** Graph Hacks — WeMakeDevs × FalkorDB
 - **Dates:** 15–18 October 2026
-- **Demo:** [Watch the project demo](DEMO_VIDEO_LINK)
+- **Demo:** [Watch the project demo](https://youtu.be/vD7wVlujQkM)
+- **Blog:** [Project Blog](https://builder.aws.com/content/3KrhSkQfUi6w3udtO7mhNTTEENb/graphmind-research-building-an-intelligent-research-assistant-with-falkordb)
 - **Documentation:** [Build Guide](docs/BUILD_GUIDE.md) · [Data Model](docs/DATA_MODEL.md) · [Cypher Reference](docs/CYPHER.md) · [Evaluation](docs/EVALUATION.md)
 
 ---
