@@ -115,75 +115,75 @@ relationships.
 
 ### Main node labels
 
-  -----------------------------------------------------------------------
-  Node                                Purpose
-  ----------------------------------- -----------------------------------
-  `Paper`                             A research paper, including its
-                                      metadata and library status
-
-  `Author`                            A paper author
-
-  `Institution`                       An affiliation
-
-  `Venue`                             A publication venue
-
-  `Method`                            A method or approach proposed or
-                                      used by a paper
-
-  `Dataset`                           A dataset used or introduced in the
-                                      research
-
-  `Task` / `Metric`                   The task being studied and the
-                                      metric used to evaluate it
-
-  `Result`                            A reported value with its method,
-                                      dataset, metric, split, and origin
-
-  `Claim`                             A finding or statement associated
-                                      with a paper
-
-  `Job`                               The state of a pipeline task, where
-                                      used by the running implementation
-
-  `ResearchSession` / `Question` /    Research-session and saved-insight
-  `Insight`                           data, where used by the running
-                                      implementation
-  -----------------------------------------------------------------------
+      -----------------------------------------------------------------------
+      Node                                Purpose
+      ----------------------------------- -----------------------------------
+      `Paper`                             A research paper, including its
+                                          metadata and library status
+    
+      `Author`                            A paper author
+    
+      `Institution`                       An affiliation
+    
+      `Venue`                             A publication venue
+    
+      `Method`                            A method or approach proposed or
+                                          used by a paper
+    
+      `Dataset`                           A dataset used or introduced in the
+                                          research
+    
+      `Task` / `Metric`                   The task being studied and the
+                                          metric used to evaluate it
+    
+      `Result`                            A reported value with its method,
+                                          dataset, metric, split, and origin
+    
+      `Claim`                             A finding or statement associated
+                                          with a paper
+    
+      `Job`                               The state of a pipeline task, where
+                                          used by the running implementation
+    
+      `ResearchSession` / `Question` /    Research-session and saved-insight
+      `Insight`                           data, where used by the running
+                                          implementation
+      -----------------------------------------------------------------------
 
 ### Important relationships
 
-  -----------------------------------------------------------------------
-  Relationship                        Meaning
-  ----------------------------------- -----------------------------------
-  `WROTE`                             Connects an author to a paper
-
-  `CITES`                             Connects a citing paper to the
-                                      paper it references
-
-  `PROPOSES` / `USES`                 Records a paper's relationship to a
-                                      method
-
-  `INTRODUCES` / `EVALUATES_ON`       Connects papers to datasets
-
-  `REPORTS`                           Connects a paper to a reported
-                                      result
-
-  `OF_METHOD` / `ON_DATASET` /        Describes the method, dataset, and
-  `MEASURED_BY`                       metric associated with a result
-
-  `EXTENDS`                           Represents a method lineage
-                                      relationship
-
-  `CORRECTS` / `REPRODUCES`           Represents a correction or
-                                      reproduction relationship
-
-  `MAKES` / `ABOUT`                   Connects a paper to a claim and the
-                                      entity it concerns
-
-  `SUPPORTS` / `CONTRADICTS` /        Represents a relationship between
-  `QUALIFIES`                         claims, when established by the
-                                      pipeline
-  -----------------------------------------------------------------------
+      -----------------------------------------------------------------------
+      Relationship                        Meaning
+      ----------------------------------- -----------------------------------
+      `WROTE`                             Connects an author to a paper
+    
+      `CITES`                             Connects a citing paper to the
+                                          paper it references
+    
+      `PROPOSES` / `USES`                 Records a paper's relationship to a
+                                          method
+    
+      `INTRODUCES` / `EVALUATES_ON`       Connects papers to datasets
+    
+      `REPORTS`                           Connects a paper to a reported
+                                          result
+    
+      `OF_METHOD` / `ON_DATASET` /        Describes the method, dataset, and
+      `MEASURED_BY`                       metric associated with a result
+    
+      `EXTENDS`                           Represents a method lineage
+                                          relationship
+    
+      `CORRECTS` / `REPRODUCES`           Represents a correction or
+                                          reproduction relationship
+    
+      `MAKES` / `ABOUT`                   Connects a paper to a claim and the
+                                          entity it concerns
+    
+      `SUPPORTS` / `CONTRADICTS` /        Represents a relationship between
+      `QUALIFIES`                         claims, when established by the
+                                          pipeline
+      -----------------------------------------------------------------------
 
 The exact properties and direction conventions are documented in
 `docs/DATA_MODEL.md` and `docs/CYPHER.md`. Check those files alongside
@@ -229,17 +229,17 @@ not run it against a workspace containing data you want to keep. Treat
 
 ## 6. Technology choices
 
-  Component                 Role
-  ------------------------- ---------------------------------------------------------
-  Python                    Ingestion and backend logic
-  FastAPI                   HTTP API and health endpoint
-  FalkorDB                  Primary graph database
-  ChromaDB                  Semantic passage index
-  Ollama                    Local language model and embedding model runtime
-  LangGraph                 Workflow orchestration where used by the research agent
-  React, Vite, TypeScript   Frontend
-  Docker Compose            Local FalkorDB service
-  PyMuPDF                   PDF text extraction
+      Component                 Role
+      ------------------------- ---------------------------------------------------------
+      Python                    Ingestion and backend logic
+      FastAPI                   HTTP API and health endpoint
+      FalkorDB                  Primary graph database
+      ChromaDB                  Semantic passage index
+      Ollama                    Local language model and embedding model runtime
+      LangGraph                 Workflow orchestration where used by the research agent
+      React, Vite, TypeScript   Frontend
+      Docker Compose            Local FalkorDB service
+      PyMuPDF                   PDF text extraction
 
 The configured local models are `llama3.2:latest` and
 `nomic-embed-text`. The application requires the models to be available
@@ -506,38 +506,38 @@ vector retrieval, and what I personally verified.
 
 ## 13. Useful project files
 
-  -----------------------------------------------------------------------
-  File or directory                   What to look at
-  ----------------------------------- -----------------------------------
-  `backend/app/api/main.py`           API setup and routes
-
-  `backend/app/graph/ingest.py`       PDF ingestion workflow and CLI
-
-  `backend/app/graph/analysis.py`     Parameterised graph analysis
-                                      queries
-
-  `backend/app/graph/client.py`       FalkorDB connection and workspace
-                                      naming
-
-  `backend/app/config.py`             Environment configuration
-
-  `backend/.env.example`              Local configuration template
-
-  `docs/DATA_MODEL.md`                Graph labels, properties, and
-                                      relationships
-
-  `docs/CYPHER.md`                    Documented graph queries
-
-  `docs/EVALUATION.md`                Evaluation notes available in the
-                                      repository
-
-  `ground_truth/`                     Synthetic-corpus reference
-                                      fixtures; not extracted output
-
-  `corpus/pdf/`                       Demo PDF collection
-  -----------------------------------------------------------------------
-
-------------------------------------------------------------------------
+      -----------------------------------------------------------------------
+      File or directory                   What to look at
+      ----------------------------------- -----------------------------------
+      `backend/app/api/main.py`           API setup and routes
+    
+      `backend/app/graph/ingest.py`       PDF ingestion workflow and CLI
+    
+      `backend/app/graph/analysis.py`     Parameterised graph analysis
+                                          queries
+    
+      `backend/app/graph/client.py`       FalkorDB connection and workspace
+                                          naming
+    
+      `backend/app/config.py`             Environment configuration
+    
+      `backend/.env.example`              Local configuration template
+    
+      `docs/DATA_MODEL.md`                Graph labels, properties, and
+                                          relationships
+    
+      `docs/CYPHER.md`                    Documented graph queries
+    
+      `docs/EVALUATION.md`                Evaluation notes available in the
+                                          repository
+    
+      `ground_truth/`                     Synthetic-corpus reference
+                                          fixtures; not extracted output
+    
+      `corpus/pdf/`                       Demo PDF collection
+      -----------------------------------------------------------------------
+    
+    ------------------------------------------------------------------------
 
 
 **Project:** GraphMind Research\
