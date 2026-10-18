@@ -9,21 +9,7 @@ assistants were used, for what, and where to find every instruction they were gi
   instruction files, each with the full code and the reasoning behind it; tested that code against FalkorDB in its own
   sandbox before handing it over; generated the synthetic paper corpus and its ground-truth graph; drew the
   architecture diagram; drafted the README.
-- **Claude Code.** Applied each instruction file to this repository on my machine, ran the tests and checks it asked
-  for, explained what it changed, and made the commits I asked for.
 
-## What I did
-
-<!-- Edit this list so it says, in your own words, exactly what you did. -->
-
-- Chose the problem (finding relationships between research papers, after first trying a company-knowledge agent on
-  15 October) and the two tracks.
-- Set the constraints the code had to follow: FalkorDB as the only database (no SQLite), no secrets in git, one step
-  at a time, commit only after I had checked a step.
-- Ran every step on my own machine (Windows, FalkorDB in Docker, Ollama), ran the measurements in `EVALUATION.md`, and
-  reported failures and results back, which decided what was built or fixed next.
-- Reviewed each step before committing it. I can explain the graph model, the queries, the agents and the technical
-  decisions (rule 12).
 
 ## The instruction files
 
