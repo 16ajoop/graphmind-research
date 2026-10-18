@@ -125,13 +125,21 @@ app = FastAPI(title="GraphMind Research API", lifespan=lifespan)
 
 # ---------------------------------------------------------------- FalkorDB first
 def falkordb_up() -> bool:
-    # No retries: redis-py retries a refused connection with backoff (about 4 s), and the UI should hear "down" at once.
+    # Check FalkorDB using the configured cloud credentials and TLS settings.
     try:
-        return bool(redis.Redis(host=FALKOR_HOST, port=FALKOR_PORT, socket_connect_timeout=1, socket_timeout=2,
-                                retry=Retry(NoBackoff(), 0)).ping())
+        return bool(redis.Redis(
+            host=FALKOR_HOST,
+            port=FALKOR_PORT,
+            username=settings.falkordb_username or None,
+            password=settings.falkordb_password or None,
+            ssl=settings.falkordb_ssl,
+            ssl_check_hostname=settings.falkordb_ssl,
+            socket_connect_timeout=3,
+            socket_timeout=3,
+            retry=Retry(NoBackoff(), 0),
+        ).ping())
     except redis.exceptions.RedisError:
         return False
-
 
 @app.exception_handler(redis.exceptions.ConnectionError)
 @app.exception_handler(redis.exceptions.TimeoutError)
