@@ -298,10 +298,9 @@ that the correct graph is known and the extraction can be measured. No real, pay
 
 ## Limitations
 
-- The PDF parser is tuned to the corpus layout (numbered references, results tables with a source column); real
-  papers with other layouts will yield fewer results and citations.
-- Claim extraction and claim relations depend on a small local LLM and are the least accurate part.
-- Runs locally; there is no hosted demo and no user accounts (workspaces are separate graphs, not access control).
+- The PDF parser is tuned to the project corpus layout (numbered references and results tables with a source column). Papers with different layouts may yield fewer extracted results and citations.
+- Claim extraction and claim-relationship detection depend on a small local LLM and are the least accurate parts of the current pipeline.
+- The frontend has a hosted deployment. Running the complete research pipeline locally requires FalkorDB and Ollama. The availability of backend services and AI models depends on the deployment configuration.
 
 ## AI assistance
 
